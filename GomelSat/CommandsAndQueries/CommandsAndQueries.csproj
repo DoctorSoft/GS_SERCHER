@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BE0C0C36-C5BF-4F83-A4A0-42B45A71771C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CommandsAndQueries</RootNamespace>
+    <AssemblyName>CommandsAndQueries</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommandsAndHandlers\AnalizingTexts\AddAnalizingTextCommand.cs" />
+    <Compile Include="CommandsAndHandlers\AnalizingTexts\AddAnalizingTextCommandHandler.cs" />
+    <Compile Include="CommandsAndHandlers\GomelSatNews\AddGomelSatNewsContentsCommand.cs" />
+    <Compile Include="CommandsAndHandlers\GomelSatNews\AddGomelSatNewsContentsCommandHandler.cs" />
+    <Compile Include="CommandsAndHandlers\GomelSatNews\RemoveLastGomelSatNewsCommand.cs" />
+    <Compile Include="CommandsAndHandlers\GomelSatNews\RemoveLastGomelSatNewsCommandHandler.cs" />
+    <Compile Include="CommandsAndHandlers\GomelSatNews\SynchronizeGomelSatNewsCommand.cs" />
+    <Compile Include="CommandsAndHandlers\GomelSatNews\SynchronizeGomelSatNewsCommandHandler.cs" />
+    <Compile Include="CommandsAndHandlers\RequestRecords\UpdateLastRequestDateCommand.cs" />
+    <Compile Include="CommandsAndHandlers\RequestRecords\UpdateLastRequestDateCommandHandler.cs" />
+    <Compile Include="CommandsAndHandlers\Words\AddWordCommand.cs" />
+    <Compile Include="CommandsAndHandlers\Words\AddWordCommandHandler.cs" />
+    <Compile Include="CommandsAndHandlers\Words\RemoveWordListCommand.cs" />
+    <Compile Include="CommandsAndHandlers\Words\RemoveWordListCommandHandler.cs" />
+    <Compile Include="Dispatchers\CommandDispatcher.cs" />
+    <Compile Include="Dispatchers\QueryDispatcher.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueriesAndHandlers\AnalizingTexts\GetAnalizingTextByIdQuery.cs" />
+    <Compile Include="QueriesAndHandlers\AnalizingTexts\GetAnalizingTextByIdQueryHandler.cs" />
+    <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsQuery.cs" />
+    <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsQueryHandler.cs" />
+    <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsWithoutContentQuery.cs" />
+    <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsWithoutContentQueryHandler.cs" />
+    <Compile Include="QueriesAndHandlers\RequestRecords\GetLastRequestDateQuery.cs" />
+    <Compile Include="QueriesAndHandlers\RequestRecords\GetLastRequestDateQueryHandler.cs" />
+    <Compile Include="QueriesAndHandlers\Words\GetLastAddedWordListQuery.cs" />
+    <Compile Include="QueriesAndHandlers\Words\GetLastAddedWordListQueryHandler.cs" />
+    <Compile Include="QueriesAndHandlers\Words\GetWordListQuery.cs" />
+    <Compile Include="QueriesAndHandlers\Words\GetWordListQueryHandler.cs" />
+    <Compile Include="QueriesAndHandlers\Words\WordCanBeAddedQuery.cs" />
+    <Compile Include="QueriesAndHandlers\Words\WordCanBeAddedQueryHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{31E311C0-4F5D-4C1D-956E-8F4B52307EA7}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataBase\DataBase.csproj">
+      <Project>{C78B6075-5A05-41B5-B201-D2CB5A440855}</Project>
+      <Name>DataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataParsers\DataParsers.csproj">
+      <Project>{C88506A7-6B49-4A71-BBB8-A55FE328FC61}</Project>
+      <Name>DataParsers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextAnalizators\TextAnalizators.csproj">
+      <Project>{7AD36110-ABB2-452F-922B-948485E975C8}</Project>
+      <Name>TextAnalizators</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

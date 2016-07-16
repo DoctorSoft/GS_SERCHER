@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "AnalizedData";
+}
+
+@model Services.GomelSat.Models.AnalizedDataViewModel
+
+@{
+    var index = 0;
+}
+
+@foreach (var header in @Model.AnalizedTextModels)
+{
+    index++;
+    <div class="page-header">
+        <h2> @Html.Raw(@header.NewsHeader) </h2>
+        <p>
+            @Html.Raw(@header.NewsText)
+        </p>
+    </div>
+}
+
+<div class="following-box panel panel-primary following-box-with-scroll">
+    <div class="following-box-content following-box-with-scroll">
+        <h4><b>@Model.HeaderText</b></h4>
+
+        <br/>
+        <br/>
+
+        @Model.ContentText
+    </div>
+</div>

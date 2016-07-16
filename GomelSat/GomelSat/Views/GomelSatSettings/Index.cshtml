@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@model Services.Words.Models.WordListToDeleteViewModel
+
+<div class="panel panel-primary settings-panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Data settings</h3>
+    </div>
+    <div class="settings-content">
+        <div class="text-center">
+            <h4 class="alert-info alert">
+                Please, if you need to refresh some news, click this button <br />
+                (<b>Warning!</b> Please, don't use this functionality more than once in 10 minutes)
+            </h4>
+        </div>
+        @using (Html.BeginForm("RefreshNews", "GomelSatSettings", new { }, FormMethod.Post, new { }))
+        {
+            <input type="submit" class="btn btn-primary pull-left settings-action-button" value="Refresh news">
+        }
+
+        <div class="modal-end-line">
+            Text
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="panel panel-primary settings-panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Word settings</h3>
+    </div>
+    <div class="settings-content">
+        <div class="text-center">
+            <h4 class="alert-info alert">
+                Please, write the word you want to add to exception list <br />
+            </h4>
+        </div>
+        @using (Html.BeginForm("AddWord", "GomelSatSettings", new { }, FormMethod.Post, new { }))
+        {
+            <div class="input-group-lg word-text-input-wrapper">
+                <h4 class="text-left text-info">Word:</h4>
+                <input type="text" name="word" id="word" class="form-control word-input">
+            </div>
+
+            <input type="submit" class="btn btn-primary pull-left settings-action-button" value="Add word">
+        }
+
+        <div class="modal-end-line">
+            Text
+        </div>
+
+        @using (Html.BeginForm("RemoveWords", "GomelSatSettings", new { }, FormMethod.Post, new { }))
+        {
+            <div class="word-list-row">
+                @foreach (var nextWord in Model.Words)
+                {
+                    <div class="form-control word-list-inside-row"> <input id="@nextWord" name="words" type="checkbox" value="@nextWord"> @nextWord </div>
+                }
+            </div>
+
+            <input type="submit" class="btn btn-primary pull-left settings-action-button" value="Remove words"/>
+        }
+
+        <div class="modal-end-line">
+            Text
+        </div>
+
+    </div>
+</div>
+
+

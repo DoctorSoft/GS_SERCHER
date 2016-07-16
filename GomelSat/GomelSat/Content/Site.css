@@ -1,0 +1,157 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.following-box {
+    width: 450px;
+    height: 500px;
+    position: fixed;
+    z-index: 100;
+    right: 5px;
+    border-width: 2px;
+    border-color: #428bca;
+    border-style: double;
+    background-color: white;
+    bottom: 0;
+}
+
+.following-box-content {
+    margin: 10px;
+}
+
+.following-box-header {
+    width: 400px;
+    max-width: 400px;
+    min-width: 400px;
+    margin: 10px;
+    margin-bottom: 15px;
+    margin-top: 5px
+}
+
+.following-box-text {
+    margin: 10px;
+    width: 400px;
+    max-width: 400px;
+    min-width: 400px;
+    height: 280px;
+    min-height: 280px;
+    max-height: 280px;
+}
+
+.following-box-with-scroll {
+    overflow-y: scroll
+}
+
+.settings-panel {
+    border-width: 2px;
+    border-color: #428bca;
+    border-style: double;
+    background-color: white;
+    margin-top: 30px;
+}
+
+.settings-content {
+    min-width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+    min-height: 100%
+} 
+
+.settings-action-button {
+    min-width: 100%;
+}
+
+.word-text-input-wrapper {
+    padding-bottom: 30px;
+    min-width: 50%;
+    display: table;
+    margin: 0 auto;
+}
+
+.modal-end-line {
+    height: 10px;
+    display: inline-block;
+    opacity: 0
+}
+
+.word-input {
+    min-width: 100%;
+    max-width: 100%
+}
+
+.word-list-row {
+    padding: 10px;
+}
+
+.word-list-inside-row {
+    width: 30%;
+    display: inline-block;
+}
+
+.back-to-top:link {
+    width: 200px;
+    text-decoration: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+	position: fixed;
+	z-index: 999;
+	left: 20px;
+	top: 80px;
+	background: #428bca;
+    color: white;
+	border-radius: 30px;
+    text-align: center
+}
+
+.back-to-top:hover {
+    background: #2a6496;
+    text-decoration: none;
+}
+
+.back-to-top:active {
+    text-decoration: none;
+}
+
+.back-to-top:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-line {
+    background-color: #428bca;
+}
+
+.navbar-line .navbar-brand {
+    color: white
+}
+
+.navbar-line .navbar-nav li a{
+    color: white
+}
+
+.navbar-line .navbar-nav li a:hover{
+    background-color: #2a6496;
+}
