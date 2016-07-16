@@ -81,6 +81,10 @@
       <Project>{31E311C0-4F5D-4C1D-956E-8F4B52307EA7}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FilesManagers\FilesManagers.csproj">
+      <Project>{D3759511-37C7-420C-BC88-61D8FF8EBAEA}</Project>
+      <Name>FilesManagers</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

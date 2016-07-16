@@ -1,7 +1,10 @@
-﻿using DataParsers;
+﻿using CommandsAndQueries.QueriesAndHandlers.Words;
+using DataBase.Contexts;
+using DataParsers;
 using DataParsers.NewsParsers;
 using DataProviders;
 using DataProviders.SiteDataPrividers;
+using FilesManagers.WordFileManagers;
 
 namespace Laboratory
 {
@@ -9,11 +12,11 @@ namespace Laboratory
     {
         static void Main(string[] args)
         {
-            var provider = new GomelSatDataProvider();
-            var parser = new GomelSatNewsHeadersParser();
+            var wordsHandler = new GetWordListQueryHandler(new DataBaseContext());
+            var words = wordsHandler.Handle(new GetWordListQuery());
 
-            var data = provider.GetPageData();
-            var news = parser.GetPageNewsHeaders(data);
+            var fileManager = new WordFileManager();
+            fileManager.RewriteWords(words);
         }
     }
 }

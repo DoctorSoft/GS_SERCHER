@@ -33,7 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,8 +56,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommandsAndQueries\CommandsAndQueries.csproj">
+      <Project>{BE0C0C36-C5BF-4F83-A4A0-42B45A71771C}</Project>
+      <Name>CommandsAndQueries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{31E311C0-4F5D-4C1D-956E-8F4B52307EA7}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataBase\DataBase.csproj">
+      <Project>{C78B6075-5A05-41B5-B201-D2CB5A440855}</Project>
+      <Name>DataBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataParsers\DataParsers.csproj">
       <Project>{C88506A7-6B49-4A71-BBB8-A55FE328FC61}</Project>
       <Name>DataParsers</Name>
@@ -56,6 +78,10 @@
     <ProjectReference Include="..\DataProviders\DataProviders.csproj">
       <Project>{558F6FB2-6D10-4B85-87C8-71592A06BD70}</Project>
       <Name>DataProviders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FilesManagers\FilesManagers.csproj">
+      <Project>{D3759511-37C7-420C-BC88-61D8FF8EBAEA}</Project>
+      <Name>FilesManagers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

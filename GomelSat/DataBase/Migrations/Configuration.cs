@@ -4,6 +4,7 @@ using System.Linq;
 using Common.Enums;
 using DataBase.Models.SettingsModels;
 using DataBase.Models.WordModels;
+using FilesManagers.WordFileManagers;
 
 namespace DataBase.Migrations
 {
@@ -26,6 +27,15 @@ namespace DataBase.Migrations
                     SiteName = SiteName.GomelSat,
                     LastRequest = DateTimeOffset.MinValue
                 });
+            }
+            
+            var words = new WordFileManager().GetWords();
+            foreach (var word in words)
+            {
+                if (!context.WordModels.Any(model => model.Word.ToUpper() == word.ToUpper()))
+                {
+                    context.WordModels.Add(new WordDataBaseModel { Word = word });
+                }
             }
         }
     }
