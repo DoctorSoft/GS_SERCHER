@@ -6,7 +6,7 @@
 
         public const long StartPage = 1;
 
-        public const long EndPage = 5;
+        public const long EndPage = 3;
 
         public const string WordFormSiteWordPattern = "http://htmlweb.ru/service/api.php?inflect={0}&json";
     }
