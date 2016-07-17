@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using FilesManagers.Constants;
 using Services.GomelSat;
 using Services.Words;
 
@@ -41,6 +42,12 @@ namespace GomelSat.Controllers
         {
             wordService.DeleteWords(words);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult DownloadWords()
+        {
+            var file = wordService.GetWordsFile();
+            return File(file, "text/plain", FileNameConstants.WordsFileName);
         }
     }
 }

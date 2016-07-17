@@ -4,6 +4,7 @@ using System.IO;
 using System.Net.Mime;
 using System.Reflection;
 using System.Text;
+using Common.Extensions;
 using FilesManagers.Constants;
 
 namespace FilesManagers.WordFileManagers
@@ -34,7 +35,7 @@ namespace FilesManagers.WordFileManagers
             }
         }
 
-        public void RewriteWords(IEnumerable<string> words)
+        public byte[] RewriteWords(IEnumerable<string> words)
         {
             Directory.CreateDirectory(Directory.GetDirectoryRoot(path));
             using (var writer = new StreamWriter(path, false, Encoding.UTF8))
@@ -44,6 +45,11 @@ namespace FilesManagers.WordFileManagers
                     writer.WriteLine(word);
                 }
                 writer.Close();
+            }
+
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                return stream.ToByteArray();
             }
         }
     }

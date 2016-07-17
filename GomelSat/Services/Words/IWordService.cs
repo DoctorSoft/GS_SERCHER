@@ -12,5 +12,7 @@ namespace Services.Words
         WordListToDeleteViewModel GetWordListToDelete();
 
         void DeleteWords(IEnumerable<string> words);
+
+        byte[] GetWordsFile();
     }
 }
