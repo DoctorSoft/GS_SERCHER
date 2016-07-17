@@ -7,6 +7,6 @@ namespace FilesManagers.WordFileManagers
     {
         IEnumerable<string> GetWords();
 
-        void RewriteWords(IEnumerable<string> words);
+        byte[] RewriteWords(IEnumerable<string> words);
     }
 }

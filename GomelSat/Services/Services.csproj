@@ -74,6 +74,10 @@
       <Project>{558f6fb2-6d10-4b85-87c8-71592a06bd70}</Project>
       <Name>DataProviders</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FilesManagers\FilesManagers.csproj">
+      <Project>{D3759511-37C7-420C-BC88-61D8FF8EBAEA}</Project>
+      <Name>FilesManagers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TextAnalizators\TextAnalizators.csproj">
       <Project>{7AD36110-ABB2-452F-922B-948485E975C8}</Project>
       <Name>TextAnalizators</Name>

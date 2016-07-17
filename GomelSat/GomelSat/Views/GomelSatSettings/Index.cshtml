@@ -58,12 +58,22 @@
             <div class="word-list-row">
                 @foreach (var nextWord in Model.Words)
                 {
-                    <div class="form-control word-list-inside-row"> <input id="@nextWord" name="words" type="checkbox" value="@nextWord"> @nextWord </div>
+                    <div class="form-control word-list-inside-row">
+                        <input id="@nextWord" name="words" type="checkbox" value="@nextWord"> @nextWord
+                    </div>
                 }
             </div>
 
-            <input type="submit" class="btn btn-primary pull-left settings-action-button" value="Remove words"/>
+            <input type="submit" class="btn btn-primary pull-left settings-action-button" value="Remove words" />
         }
+
+        <div class="modal-end-line">
+            Text
+        </div>
+
+        <div>
+            <a href='@Url.Action("DownloadWords", "GomelSatSettings", new {})' class="btn btn-primary pull-left settings-action-button"> Download list of words </a>
+        </div>
 
         <div class="modal-end-line">
             Text
@@ -71,5 +81,3 @@
 
     </div>
 </div>
-
-

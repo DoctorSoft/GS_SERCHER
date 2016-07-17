@@ -235,6 +235,10 @@
       <Project>{C88506A7-6B49-4A71-BBB8-A55FE328FC61}</Project>
       <Name>DataParsers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FilesManagers\FilesManagers.csproj">
+      <Project>{D3759511-37C7-420C-BC88-61D8FF8EBAEA}</Project>
+      <Name>FilesManagers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NinjectModules\NinjectModules.csproj">
       <Project>{EAB94D97-0ECC-4611-A23D-F799FA170661}</Project>
       <Name>NinjectModules</Name>

@@ -45,6 +45,12 @@
     <Compile Include="WordFileManagers\IWordFileManager.cs" />
     <Compile Include="WordFileManagers\WordFileManager.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{31e311c0-4f5d-4c1d-956e-8f4b52307ea7}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
