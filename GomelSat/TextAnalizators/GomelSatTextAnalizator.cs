@@ -9,31 +9,21 @@ namespace TextAnalizators
 {
     public class GomelSatTextAnalizator : ITextAnalizator<GomelSatNewsModel>
     {
-        public AnalizedTextModel Analize(GomelSatNewsModel newsContentModel, IEnumerable<string> wordList)
+        public AnalizedTextModel Analize(GomelSatNewsModel newsContentModel, IEnumerable<string> wordList, IEnumerable<string> banList)
         {
             var preparedNews = " " + TagsHandleHelper.RemoveTags(TextHandleHelper.ConvertToPatternForm(newsContentModel.Text.ToLower())) + " ";
 
             char[] delimiterChars = { ' ', ',', '.', ':', '\t', ';', '-', '?', '!', '_', '(', ')', '«', '»', '\'', '\"', '/', '<', '>' };
 
-            
-            preparedNews = (from word in wordList 
+            var newsContentWordList = GetNewsWordList(new AnalizingTextModel {NewsText = preparedNews}, banList);
+
+            var list = wordList.Intersect(newsContentWordList).Distinct().ToList();
+
+            preparedNews = (from word in list 
                             from startDelimiterChar in delimiterChars 
                             from endDelimiterChar in delimiterChars 
                             select startDelimiterChar + word + endDelimiterChar)
                             .Aggregate(preparedNews, (current, completedWord) => current.Replace(completedWord, string.Format(" <span style=\"color: red\"><b>{0}</b></span> ", completedWord)));
-            
-
-            /*foreach (var word in wordList)
-            {
-                foreach (var startDelimiterChar in delimiterChars)
-                {
-                    foreach (var endDelimiterChar in delimiterChars)
-                    {
-                        var completedWord = startDelimiterChar + word + endDelimiterChar;
-                        preparedNews = preparedNews.Replace(completedWord, string.Format(" <span style=\"color: red\"><b>{0}</b></span> ", completedWord));
-                    }
-                }
-            }*/
 
             preparedNews = TextHandleHelper.DeconvertToPatternForm(preparedNews);
 
@@ -63,7 +53,7 @@ namespace TextAnalizators
 
             var wordBanList = banList.Union(forbiddenWords).ToList();
 
-            var realWordList = words.Except(wordBanList).ToList();
+            var realWordList = words.Except(wordBanList).Distinct().ToList();
 
             return realWordList;
         }
