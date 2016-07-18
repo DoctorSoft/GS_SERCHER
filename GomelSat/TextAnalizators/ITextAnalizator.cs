@@ -6,7 +6,7 @@ namespace TextAnalizators
 {
     public interface ITextAnalizator<in TNewsContentModel>
     {
-        AnalizedTextModel Analize(GomelSatNewsModel newsContentModel, IEnumerable<string> wordList);
+        AnalizedTextModel Analize(GomelSatNewsModel newsContentModel, IEnumerable<string> wordList, IEnumerable<string> banList);
 
         IEnumerable<string> GetNewsWordList(AnalizingTextModel model, IEnumerable<string> banList);
     }

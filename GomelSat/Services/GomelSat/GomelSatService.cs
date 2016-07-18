@@ -83,7 +83,7 @@ namespace Services.GomelSat
             var banList = wordService.GetWordList().ToList();
 
             var wordList = gomelSaTextAnalizator.GetNewsWordList(analizingText, banList);
-            var analizedResults = news.Select(model => gomelSaTextAnalizator.Analize(model, wordList)).ToList();
+            var analizedResults = news.Select(model => gomelSaTextAnalizator.Analize(model, wordList, banList)).ToList();
 
             return new AnalizedDataViewModel
             {
