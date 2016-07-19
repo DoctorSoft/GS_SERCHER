@@ -34,7 +34,11 @@ namespace DataParsers.NewsParsers
             contentPattern = @"^((?!<strong>).)*";
             regex = new Regex(contentPattern);
 
-            return regex.Match(textWithExtraData).Value;
+            var result = regex.Match(textWithExtraData).Value;
+            
+            result = Regex.Replace(result, "<div[^>]*border[^>]*>", string.Empty);
+
+            return result;
         }
     }
 }
