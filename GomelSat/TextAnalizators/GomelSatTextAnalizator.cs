@@ -30,7 +30,8 @@ namespace TextAnalizators
             return new AnalizedTextModel
             {
                 NewsHeader = newsContentModel.HeaderName,
-                NewsText = preparedNews
+                NewsText = preparedNews,
+                FoundWordsCount = list.Count
             };
         }
 
