@@ -126,7 +126,8 @@ namespace Services.GomelSat
                 .GetContent(new GomelSatNewsContentModel
                 {
                     Text = gomelSatDataProvider.GetNewsPageContentByUrl(model.Link),
-                    Link = model.Link
+                    Link = model.Link,
+                    HeaderText = model.HeaderText
                 }
             )).ToList();
 
