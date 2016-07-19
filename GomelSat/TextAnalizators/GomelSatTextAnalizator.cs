@@ -47,7 +47,11 @@ namespace TextAnalizators
             lastWord = string.Join("</div>", contentSplittedText);
 
             splittedText[splittedText.Count - 1] = lastWord;
+
             preparedNews = string.Join("colorend", splittedText);
+
+            preparedNews = Regex.Replace(preparedNews, "<[^a-zA-Zа-яА-Я0-9>]*b[^a-zA-Zа-яА-Я0-9>]*>", " ");
+            preparedNews = Regex.Replace(preparedNews, "style=\"[^\\\"]*#000066[^\\\"]*\\\"", "class=\"news-text-header\"");
 
             preparedNews = TextHandleHelper.DeconvertToPatternForm(preparedNews);
 
