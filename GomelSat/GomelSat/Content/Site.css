@@ -157,10 +157,13 @@ textarea {
 }
 
 .underlined-word {
-    background-color: red;
+    background-color: #962a64;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
+        padding-left: 20px;
+    padding-right: 20px;
+	border-radius: 30px;
 }
 
 .news-text-header {
