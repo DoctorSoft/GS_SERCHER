@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using DataParsers.Helpers;
 using DataParsers.Models;
 using TextAnalizators.Helpers;
@@ -9,38 +12,50 @@ namespace TextAnalizators
 {
     public class GomelSatTextAnalizator : ITextAnalizator<GomelSatNewsModel>
     {
-        public AnalizedTextModel Analize(GomelSatNewsModel newsContentModel, IEnumerable<string> wordList)
+        public static char[] DelimiterChars = { ' ', ',', '.', ':', '\t', ';', '-', '?', '!', '_', '(', ')', '«', '»', '\'', '\"', '/', '<', '>', '\n', '\0', '\\', '–', '[', ']', '\r' };
+
+        public AnalizedTextModel Analize(GomelSatNewsModel newsContentModel, IEnumerable<string> wordList, IEnumerable<string> banList)
         {
-            var preparedNews = " " + TagsHandleHelper.RemoveTags(TextHandleHelper.ConvertToPatternForm(newsContentModel.Text.ToLower())) + " ";
+            var preparedNews = " " + TextHandleHelper.ConvertToPatternForm(newsContentModel.Text.ToLower()) + " ";
 
-            char[] delimiterChars = { ' ', ',', '.', ':', '\t', ';', '-', '?', '!', '_', '(', ')', '«', '»', '\'', '\"', '/', '<', '>' };
+            var newsContentWordList = GetNewsWordList(new AnalizingTextModel {NewsText = preparedNews}, banList);
 
-            
-            preparedNews = (from word in wordList 
-                            from startDelimiterChar in delimiterChars 
-                            from endDelimiterChar in delimiterChars 
-                            select startDelimiterChar + word + endDelimiterChar)
-                            .Aggregate(preparedNews, (current, completedWord) => current.Replace(completedWord, string.Format(" <span style=\"color: red\"><b>{0}</b></span> ", completedWord)));
-            
+            var list = wordList
+                .Intersect(newsContentWordList)
+                .Where(s => !string.IsNullOrWhiteSpace(s) && s != TextHandleHelper.EnterPattern)
+                .Distinct().ToList();
 
-            /*foreach (var word in wordList)
+            var splittedText = Regex.Split(preparedNews, "colorend", RegexOptions.IgnoreCase).ToList();
+            var lastWord = splittedText.Last();
+
+            var contentSplittedText = Regex.Split(lastWord, "<[^<]*div>[^<]*");
+            var firstContentText = contentSplittedText.First();
+
+            foreach (var word in list)
             {
-                foreach (var startDelimiterChar in delimiterChars)
+                foreach (var startDelimiterChar in DelimiterChars)
                 {
-                    foreach (var endDelimiterChar in delimiterChars)
+                    foreach (var endDelimiterChar in DelimiterChars)
                     {
-                        var completedWord = startDelimiterChar + word + endDelimiterChar;
-                        preparedNews = preparedNews.Replace(completedWord, string.Format(" <span style=\"color: red\"><b>{0}</b></span> ", completedWord));
+                        var s = startDelimiterChar + word + endDelimiterChar;
+                        firstContentText = firstContentText.Replace(s, string.Format(" {0} <span class=\"underlined-word\"> {1} </span> {2} ", startDelimiterChar, word, endDelimiterChar));
                     }
                 }
-            }*/
+            }
+
+            contentSplittedText[0] = firstContentText;
+            lastWord = string.Join("</div>", contentSplittedText);
+
+            splittedText[splittedText.Count - 1] = lastWord;
+            preparedNews = string.Join("colorend", splittedText);
 
             preparedNews = TextHandleHelper.DeconvertToPatternForm(preparedNews);
 
             return new AnalizedTextModel
             {
                 NewsHeader = newsContentModel.HeaderName,
-                NewsText = preparedNews
+                NewsText = preparedNews,
+                FoundWordsCount = list.Count
             };
         }
 
@@ -48,22 +63,20 @@ namespace TextAnalizators
         {
             var preparedText = " " + TagsHandleHelper.RemoveTags(TextHandleHelper.ConvertToPatternForm(model.NewsText)).ToLower() + " ";
 
-            char[] delimiterChars = { ' ', ',', '.', ':', '\t', ';', '-', '?', '!', '_', '(', ')', '«', '»', '\'', '\"', '/', '<', '>' };
-
-            preparedText = preparedText.Replace("\n", TextHandleHelper.EnterPattern);
-            preparedText = preparedText.Replace("\r", TextHandleHelper.EnterPattern);
+            preparedText = preparedText.Replace(" \n", TextHandleHelper.EnterPattern);
+            preparedText = preparedText.Replace(" \r", TextHandleHelper.EnterPattern);
             preparedText = preparedText.Replace(TextHandleHelper.EnterPattern, " ");
             var words = preparedText
-                .Split(delimiterChars)
+                .Split(DelimiterChars)
                 .Distinct()
                 .Where(s => !string.IsNullOrWhiteSpace(s))
                 .ToList();
 
-            var forbiddenWords = new List<string> { "span", "red", "color", "b", "style" };
+            var forbiddenWords = new List<string> { "span", "class", "underlined", "bword", "div", TextHandleHelper.EnterPattern };
 
             var wordBanList = banList.Union(forbiddenWords).ToList();
 
-            var realWordList = words.Except(wordBanList).ToList();
+            var realWordList = words.Except(wordBanList).Distinct().ToList();
 
             return realWordList;
         }

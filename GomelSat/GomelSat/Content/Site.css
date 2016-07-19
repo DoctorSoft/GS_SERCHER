@@ -155,3 +155,10 @@ textarea {
 .navbar-line .navbar-nav li a:hover{
     background-color: #2a6496;
 }
+
+.underlined-word {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
