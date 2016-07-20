@@ -10,18 +10,14 @@ namespace GomelSat.Controllers
     {
         private readonly IGomelSatService gomelSatService;
 
-        private readonly IWordService wordService;
-
-        public GomelSatSettingsController(IGomelSatService gomelSatService, IWordService wordService)
+        public GomelSatSettingsController(IGomelSatService gomelSatService)
         {
             this.gomelSatService = gomelSatService;
-            this.wordService = wordService;
         }
 
         public ActionResult Index()
         {
-            var wordsToDelete = wordService.GetWordListToDelete();
-            return View(wordsToDelete);
+            return View();
         }
 
         [HttpPost]
@@ -29,25 +25,6 @@ namespace GomelSat.Controllers
         {
             gomelSatService.RefreshNews();
             return RedirectToAction("Index", "GomelSatNews");
-        }
-
-        [HttpPost]
-        public ActionResult AddWord(string word)
-        {
-            wordService.AddWord(word);
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult RemoveWords(IEnumerable<string> words)
-        {
-            wordService.DeleteWords(words);
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult DownloadWords()
-        {
-            var file = wordService.GetWordsFile();
-            return File(file, "text/plain", FileNameConstants.WordsFileName);
         }
     }
 }

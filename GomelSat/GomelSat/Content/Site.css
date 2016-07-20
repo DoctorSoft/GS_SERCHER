@@ -144,16 +144,33 @@ textarea {
     background-color: #428bca;
 }
 
+.navbar-line .dropdown-menu{
+    background-color: #428bca!important;
+}
+
+.open{
+    background-color: #2a6496;
+}
+
 .navbar-line .navbar-brand {
     color: white
 }
 
 .navbar-line .navbar-nav li a{
-    color: white
+    color: white;
+    background-color: #428bca;
 }
 
 .navbar-line .navbar-nav li a:hover{
     background-color: #2a6496;
+}
+
+.navbar-line .navbar-nav li a:active{
+    background-color: #2a6496;
+}
+
+.navbar-line .navbar-nav li a:focus{
+    background-color: #2a6496!important;
 }
 
 .underlined-word {
@@ -179,4 +196,37 @@ textarea {
     font-weight: bold;
     font-size: 17px;
     text-transform: uppercase;
+}
+
+.nav-dropdown-button:link {
+    width: 200px;
+    text-decoration: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+	position: fixed;
+	z-index: 999;
+	left: 20px;
+	top: 80px;
+	background: #428bca;
+    color: white;
+	border-radius: 30px;
+    text-align: center
+}
+
+.nav-dropdown-button:hover {
+    background: #2a6496;
+    text-decoration: none;
+}
+
+.nav-dropdown-button:active {
+	background: #428bca;
+    text-decoration: none;
+}
+
+.nav-dropdown-button:visited {
+	background: #428bca;
+    color: white;
+    text-decoration: none;
 }
