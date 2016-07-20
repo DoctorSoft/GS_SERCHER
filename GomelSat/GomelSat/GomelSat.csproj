@@ -190,7 +190,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Properties\PublishProfiles\Julia.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -203,9 +202,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -218,7 +215,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\GomelSatNews\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\GomelSatNews\AnalizedData.cshtml" />
     <Content Include="Views\GomelSatSettings\Index.cshtml" />
   </ItemGroup>
@@ -234,28 +230,12 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommandsAndQueries\CommandsAndQueries.csproj">
-      <Project>{be0c0c36-c5bf-4f83-a4a0-42b45a71771c}</Project>
-      <Name>CommandsAndQueries</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{31e311c0-4f5d-4c1d-956e-8f4b52307ea7}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataBase\DataBase.csproj">
-      <Project>{c78b6075-5a05-41b5-b201-d2cb5a440855}</Project>
-      <Name>DataBase</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataParsers\DataParsers.csproj">
       <Project>{C88506A7-6B49-4A71-BBB8-A55FE328FC61}</Project>
       <Name>DataParsers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataProviders\DataProviders.csproj">
-      <Project>{558f6fb2-6d10-4b85-87c8-71592a06bd70}</Project>
-      <Name>DataProviders</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FilesManagers\FilesManagers.csproj">
-      <Project>{d3759511-37c7-420c-bc88-61d8ff8ebaea}</Project>
+      <Project>{D3759511-37C7-420C-BC88-61D8FF8EBAEA}</Project>
       <Name>FilesManagers</Name>
     </ProjectReference>
     <ProjectReference Include="..\NinjectModules\NinjectModules.csproj">

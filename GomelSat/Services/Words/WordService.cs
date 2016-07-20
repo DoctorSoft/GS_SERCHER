@@ -7,6 +7,7 @@ using Common.Constants;
 using DataParsers.Helpers;
 using DataParsers.WordParsers;
 using DataProviders.WordsDataProviders;
+using FilesManagers.WordFileManagers;
 using Services.Words.Models;
 
 namespace Services.Words
@@ -21,12 +22,15 @@ namespace Services.Words
 
         private readonly IWordFormsProvider wordFormsProvider;
 
-        public WordService(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher, IWordFormsDataParser wordFormsDataParser, IWordFormsProvider wordFormsProvider)
+        private readonly IWordFileManager wordFileManager;
+
+        public WordService(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher, IWordFormsDataParser wordFormsDataParser, IWordFormsProvider wordFormsProvider, IWordFileManager wordFileManager)
         {
             this.queryDispatcher = queryDispatcher;
             this.commandDispatcher = commandDispatcher;
             this.wordFormsDataParser = wordFormsDataParser;
             this.wordFormsProvider = wordFormsProvider;
+            this.wordFileManager = wordFileManager;
         }
 
         public IEnumerable<string> GetWordList()
@@ -78,6 +82,16 @@ namespace Services.Words
         {
             var removeWordListCommand = new RemoveWordListCommand {WordList = words};
             commandDispatcher.Dispatch<RemoveWordListCommand, VoidCommandResponse>(removeWordListCommand);
+        }
+
+        public byte[] GetWordsFile()
+        {
+            var getWordListQuery = new GetWordListQuery();
+            var words = queryDispatcher.Dispatch<GetWordListQuery, IEnumerable<string>>(getWordListQuery);
+
+            var file = wordFileManager.RewriteWords(words);
+
+            return file;
         }
     }
 }

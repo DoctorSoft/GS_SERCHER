@@ -16,6 +16,7 @@ using DataParsers.WordParsers;
 using DataProviders;
 using DataProviders.SiteDataPrividers;
 using DataProviders.WordsDataProviders;
+using FilesManagers.WordFileManagers;
 using Ninject.Modules;
 using Ninject.Web.Common;
 using Services.GomelSat;
@@ -58,6 +59,7 @@ namespace NinjectModules
             Bind<IWordService>().To<WordService>().InRequestScope();
             Bind<IWordFormsDataParser>().To<WordFormsDataParser>().InRequestScope();
             Bind<IWordFormsProvider>().To<WordFormsProvider>().InRequestScope();
+            Bind<IWordFileManager>().To<WordFileManager>().InRequestScope();
 
             Bind<object>().To<GetWordListQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();
             Bind<object>().To<AddWordCommandHandler>().WhenInjectedInto<CommandDispatcher>().InRequestScope();

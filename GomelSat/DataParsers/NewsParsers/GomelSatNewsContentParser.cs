@@ -10,9 +10,16 @@ namespace DataParsers.NewsParsers
         {
             var convertedText = TextHandleHelper.ConvertToPatternForm(pageTextModel.Text);
 
+            var text = TextHandleHelper.DeconvertToPatternForm(ParseMainContent(convertedText));
+
+            if (!text.ToLower().Contains("dle_image_begin"))
+            {
+                text = pageTextModel.HeaderText + " <br/> <br/> " + text;
+            }
+
             return new GomelSatNewsContentModel
             {
-                Text = TextHandleHelper.DeconvertToPatternForm(ParseMainContent(convertedText)),
+                Text = text,
                 Link = pageTextModel.Link
             };
         }
@@ -27,7 +34,11 @@ namespace DataParsers.NewsParsers
             contentPattern = @"^((?!<strong>).)*";
             regex = new Regex(contentPattern);
 
-            return regex.Match(textWithExtraData).Value;
+            var result = regex.Match(textWithExtraData).Value;
+            
+            result = Regex.Replace(result, "<div[^>]*border[^>]*>", string.Empty);
+
+            return result;
         }
     }
 }

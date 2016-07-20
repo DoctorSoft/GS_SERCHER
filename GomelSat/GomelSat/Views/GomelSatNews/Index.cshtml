@@ -35,7 +35,7 @@
         <br/>
 
         <button class="btn btn-primary pull-right" type="button" data-toggle="collapse" data-target=@("#collapseText" + index) aria-expanded="false" aria-controls="collapseText">
-            Show/Hide full text of this piece of news
+            Show/Hide full text of this article
         </button>
 
         <br/>
@@ -55,7 +55,7 @@
     <div class="following-box-content">
         @using (Html.BeginForm("AnalizeText", "GomelSatNews", new {}, FormMethod.Post, new {}))
         {
-            <p> Please, write the header here: </p>
+            <p> Please, write the headline here: </p>
 
             <input type="text" id="newsHeader" name="newsHeader" class="following-box-header" onpaste="RemoveAnnoyingWords('newsHeader')"/>
 
@@ -63,7 +63,7 @@
 
             <textarea id="newsText" name="newsText" class="following-box-text" onpaste="RemoveAnnoyingWords('newsText')"></textarea>
 
-            <input type="submit" class="btn btn-primary pull-right" value="Discover">
+            <input type="submit" class="btn btn-primary pull-right" value="Search">
         }
     </div>
 </div>

@@ -17,7 +17,9 @@
         </div>
         @using (Html.BeginForm("RefreshNews", "GomelSatSettings", new { }, FormMethod.Post, new { }))
         {
-            <input type="submit" class="btn btn-primary pull-left settings-action-button" value="Refresh news">
+            <div>
+                <input type="submit" class="btn btn-primary pull-left settings-action-button" value="Refresh news">
+            </div>
         }
 
         <div class="modal-end-line">
@@ -46,7 +48,9 @@
                 <input type="text" name="word" id="word" class="form-control word-input">
             </div>
 
-            <input type="submit" class="btn btn-primary pull-left settings-action-button" value="Add word">
+            <div>
+                <input type="submit" class="btn btn-primary pull-left settings-action-button" value="Add word">
+            </div>
         }
 
         <div class="modal-end-line">
@@ -58,12 +62,29 @@
             <div class="word-list-row">
                 @foreach (var nextWord in Model.Words)
                 {
-                    <div class="form-control word-list-inside-row"> <input id="@nextWord" name="words" type="checkbox" value="@nextWord"> @nextWord </div>
+                    <div class="form-control word-list-inside-row">
+                        <input id="@nextWord" name="words" type="checkbox" value="@nextWord"> @nextWord
+                    </div>
                 }
             </div>
 
-            <input type="submit" class="btn btn-primary pull-left settings-action-button" value="Remove words"/>
+            <div>
+                <input type="submit" class="btn btn-primary pull-left settings-action-button" value="Remove words"/>
+            </div>
         }
+
+        <div class="modal-end-line">
+            Text
+        </div>
+
+        <div class="text-center">
+            <h4 class="alert-info alert">
+                If you want to download list of words, please, click here: <br />
+            </h4>
+        </div>
+        <div>
+            <a href='@Url.Action("DownloadWords", "GomelSatSettings", new {})' class="btn btn-primary pull-left settings-action-button"> Download list of words </a>
+        </div>
 
         <div class="modal-end-line">
             Text
@@ -71,5 +92,3 @@
 
     </div>
 </div>
-
-

@@ -155,3 +155,20 @@ textarea {
 .navbar-line .navbar-nav li a:hover{
     background-color: #2a6496;
 }
+
+.underlined-word {
+    background-color: #962a64;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+        padding-left: 20px;
+    padding-right: 20px;
+	border-radius: 30px;
+}
+
+.news-text-header {
+    color: #000066;
+    font-weight: bold;
+    font-size: 17px;
+    text-transform: uppercase;
+}

@@ -6,5 +6,6 @@
 
         public string Text { get; set; }
 
+        public string HeaderText { get; set; }
     }
 }
