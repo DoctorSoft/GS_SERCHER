@@ -230,3 +230,51 @@ textarea {
     color: white;
     text-decoration: none;
 }
+
+.gomel-sat-list-links {
+    width: 200px;
+    margin: 5px;
+	position: fixed;
+	z-index: 999;
+	left: 20px;
+	top: 150px;
+    text-decoration: none;
+	background: #428bca;
+}
+
+.gomel-sat-list-links li {
+    list-style-type: none;
+}
+
+.gomel-sat-list-links li:hover {
+    list-style-type: none;
+    background-color: #2a6496;
+}
+
+.gomel-sat-list-links a {
+    color: white;
+    background-color: #428bca;
+}
+
+.gomel-sat-list-links a:link{
+    background-color: #428bca;
+}
+
+.gomel-sat-list-links a:hover{
+    background-color: white;
+    color: #2a6496;
+}
+
+.gomel-sat-list-links a:active{
+    background-color: white;
+    color: #2a6496;
+}
+
+.gomel-sat-list-links a:focus{
+    background-color: white;
+    color: #2a6496;
+}
+
+.text-white {
+    color: white
+}

@@ -6,10 +6,12 @@ using CommandsAndQueries.CommandsAndHandlers.GomelSatNews;
 using CommandsAndQueries.CommandsAndHandlers.RequestRecords;
 using CommandsAndQueries.QueriesAndHandlers.AnalizingTexts;
 using CommandsAndQueries.QueriesAndHandlers.GomelSatNews;
+using CommandsAndQueries.QueriesAndHandlers.GomelSatSiteLinks;
 using CommandsAndQueries.QueriesAndHandlers.RequestRecords;
 using Common.CommandQueryTools;
 using Common.Constants;
 using Common.Enums;
+using DataBase.Models.SiteLinkModels;
 using DataParsers;
 using DataParsers.Models;
 using DataParsers.NewsParsers;
@@ -102,6 +104,20 @@ namespace Services.GomelSat
             commandDispatcher.Dispatch<RemoveLastGomelSatNewsCommand, VoidCommandResponse>(removeLastGomelSatNewsCommand);
 
             SynchonizeNewsWithSite();
+        }
+
+        public IEnumerable<SiteLinkViewModel> GetGomelSatSiteLinks()
+        {
+            var getGomelSatSiteLinksQuery = new GetGomelSatSiteLinksQuery();
+            var links = queryDispatcher.Dispatch<GetGomelSatSiteLinksQuery, IEnumerable<GomelSatSiteLinkDataBaseModel>>(getGomelSatSiteLinksQuery);
+
+            return links
+                .Select(model => new SiteLinkViewModel
+                {
+                    Link = model.Link,
+                    Name = model.Name
+                })
+                .ToList();
         }
 
         private void SynchonizeNewsWithSite()

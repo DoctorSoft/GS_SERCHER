@@ -72,6 +72,8 @@
     <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsQueryHandler.cs" />
     <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsWithoutContentQuery.cs" />
     <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsWithoutContentQueryHandler.cs" />
+    <Compile Include="QueriesAndHandlers\GomelSatSiteLinks\GetGomelSatSiteLinksQuery.cs" />
+    <Compile Include="QueriesAndHandlers\GomelSatSiteLinks\GetGomelSatSiteLinksQueryHandler.cs" />
     <Compile Include="QueriesAndHandlers\RequestRecords\GetLastRequestDateQuery.cs" />
     <Compile Include="QueriesAndHandlers\RequestRecords\GetLastRequestDateQueryHandler.cs" />
     <Compile Include="QueriesAndHandlers\Words\GetLastAddedWordListQuery.cs" />

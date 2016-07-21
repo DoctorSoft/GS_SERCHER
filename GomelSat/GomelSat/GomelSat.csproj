@@ -175,6 +175,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GomelSatSettingsController.cs" />
     <Compile Include="Controllers\GomelSatNewsController.cs" />
+    <Compile Include="Controllers\GomelSatSiteLinkController.cs" />
     <Compile Include="Controllers\WordsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -219,6 +220,8 @@
     <Content Include="Views\GomelSatNews\AnalizedData.cshtml" />
     <Content Include="Views\GomelSatSettings\Index.cshtml" />
     <Content Include="Views\Words\Index.cshtml" />
+    <Content Include="Views\GomelSatSiteLink\Index.cshtml" />
+    <Content Include="Views\GomelSatSiteLink\Links.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

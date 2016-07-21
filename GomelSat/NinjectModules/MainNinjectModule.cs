@@ -5,6 +5,7 @@ using CommandsAndQueries.CommandsAndHandlers.Words;
 using CommandsAndQueries.Dispatchers;
 using CommandsAndQueries.QueriesAndHandlers.AnalizingTexts;
 using CommandsAndQueries.QueriesAndHandlers.GomelSatNews;
+using CommandsAndQueries.QueriesAndHandlers.GomelSatSiteLinks;
 using CommandsAndQueries.QueriesAndHandlers.RequestRecords;
 using CommandsAndQueries.QueriesAndHandlers.Words;
 using Common.CommandQueryTools;
@@ -54,6 +55,7 @@ namespace NinjectModules
             Bind<object>().To<GetGomelSatNewsWithoutContentQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();
             Bind<object>().To<AddGomelSatNewsContentsCommandHandler>().WhenInjectedInto<CommandDispatcher>().InRequestScope();
             Bind<object>().To<RemoveLastGomelSatNewsCommandHandler>().WhenInjectedInto<CommandDispatcher>().InRequestScope();
+            Bind<object>().To<GetGomelSatSiteLinksQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();
 
             //// Words service
             Bind<IWordService>().To<WordService>().InRequestScope();

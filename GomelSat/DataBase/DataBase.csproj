@@ -52,6 +52,7 @@
     <Compile Include="Configurations\AnalizingTextModels\AnalizingTextModelConfigurations.cs" />
     <Compile Include="Configurations\NewsModels\GomelSatNewsModelConfigurations.cs" />
     <Compile Include="Configurations\SettingsModels\RequestRecordModelConfigurations.cs" />
+    <Compile Include="Configurations\SiteLinkModels\GomelSatSiteLinkModelConfigurations.cs" />
     <Compile Include="Configurations\WordModels\WordModelConfigurations.cs" />
     <Compile Include="Contexts\DataBaseContext.cs" />
     <Compile Include="Migrations\201607090823376_Init.cs" />
@@ -70,10 +71,15 @@
     <Compile Include="Migrations\201607131927001_AddWordTable.Designer.cs">
       <DependentUpon>201607131927001_AddWordTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607212034211_AddGomelSatSiteLinkModels.cs" />
+    <Compile Include="Migrations\201607212034211_AddGomelSatSiteLinkModels.Designer.cs">
+      <DependentUpon>201607212034211_AddGomelSatSiteLinkModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AnalizingTextModels\AnalizingTextDataBaseModel.cs" />
     <Compile Include="Models\NewsModels\GomelSatNewsDataBaseModel.cs" />
     <Compile Include="Models\SettingsModels\RequestRecordDataBaseModel.cs" />
+    <Compile Include="Models\SiteLinkModels\GomelSatSiteLinkDataBaseModel.cs" />
     <Compile Include="Models\WordModels\WordDataBaseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -103,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607131927001_AddWordTable.resx">
       <DependentUpon>201607131927001_AddWordTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607212034211_AddGomelSatSiteLinkModels.resx">
+      <DependentUpon>201607212034211_AddGomelSatSiteLinkModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

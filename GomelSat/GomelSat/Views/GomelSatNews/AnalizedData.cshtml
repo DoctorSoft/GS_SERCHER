@@ -9,6 +9,8 @@
     var index = 0;
 }
 
+@{Html.RenderAction("Links", "GomelSatSiteLink");}
+
 @foreach (var header in @Model.AnalizedTextModels)
 {
     index++;
