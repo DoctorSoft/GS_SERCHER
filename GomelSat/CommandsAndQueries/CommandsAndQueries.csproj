@@ -68,6 +68,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueriesAndHandlers\AnalizingTexts\GetAnalizingTextByIdQuery.cs" />
     <Compile Include="QueriesAndHandlers\AnalizingTexts\GetAnalizingTextByIdQueryHandler.cs" />
+    <Compile Include="QueriesAndHandlers\AnalizingTexts\GetReviewingTextByIdQuery.cs" />
+    <Compile Include="QueriesAndHandlers\AnalizingTexts\GetReviewingTextByIdQueryHandler.cs" />
     <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsQuery.cs" />
     <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsQueryHandler.cs" />
     <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsWithoutContentQuery.cs" />

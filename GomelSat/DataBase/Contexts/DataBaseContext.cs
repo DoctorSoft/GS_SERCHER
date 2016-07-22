@@ -28,7 +28,11 @@ namespace DataBase.Contexts
 
         public DbSet<WordDataBaseModel> WordModels { get; set; }
 
-        public DbSet<GomelSatSiteLinkDataBaseModel> GomelSatSiteLinkModels { get; set; } 
+        public DbSet<GomelSatSiteLinkDataBaseModel> GomelSatSiteLinkModels { get; set; }
+
+        public DbSet<SourceLinkDataBaseModel> SourceLinks { get; set; }
+
+        public DbSet<ImageLinkDataBaseModel> ImageLinks { get; set; } 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,6 +41,8 @@ namespace DataBase.Contexts
             modelBuilder.Configurations.Add(new AnalizingTextModelConfigurations());
             modelBuilder.Configurations.Add(new WordModelConfigurations());
             modelBuilder.Configurations.Add(new GomelSatSiteLinkModelConfigurations());
+            modelBuilder.Configurations.Add(new SourceLinkModelConfigurations());
+            modelBuilder.Configurations.Add(new ImageLinkModelConfigurations());
 
             base.OnModelCreating(modelBuilder);
         }

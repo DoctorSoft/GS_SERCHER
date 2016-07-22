@@ -11,6 +11,7 @@ using CommandsAndQueries.QueriesAndHandlers.RequestRecords;
 using Common.CommandQueryTools;
 using Common.Constants;
 using Common.Enums;
+using DataBase.Models.AnalizingTextModels;
 using DataBase.Models.SiteLinkModels;
 using DataParsers;
 using DataParsers.Models;
@@ -40,7 +41,9 @@ namespace Services.GomelSat
 
         private readonly ITextAnalizator<GomelSatNewsModel> gomelSaTextAnalizator;
 
-        public GomelSatService(ISiteNewsHeadersParser<GomelSatNewsHeaderModel> gomelSatNewsHeadersParser, ISiteDataProvider gomelSatDataProvider, ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher, ISiteNewsContentParser<GomelSatNewsContentModel> gomelSatNewsContentParser, ITextAnalizator<GomelSatNewsModel> gomelSaTextAnalizator, IWordService wordService)
+        private readonly IReviewingTextAnalizator reviewingTextAnalizator;
+
+        public GomelSatService(ISiteNewsHeadersParser<GomelSatNewsHeaderModel> gomelSatNewsHeadersParser, ISiteDataProvider gomelSatDataProvider, ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher, ISiteNewsContentParser<GomelSatNewsContentModel> gomelSatNewsContentParser, ITextAnalizator<GomelSatNewsModel> gomelSaTextAnalizator, IWordService wordService, IReviewingTextAnalizator reviewingTextAnalizator)
         {
             this.gomelSatNewsHeadersParser = gomelSatNewsHeadersParser;
             this.gomelSatDataProvider = gomelSatDataProvider;
@@ -49,6 +52,7 @@ namespace Services.GomelSat
             this.gomelSatNewsContentParser = gomelSatNewsContentParser;
             this.gomelSaTextAnalizator = gomelSaTextAnalizator;
             this.wordService = wordService;
+            this.reviewingTextAnalizator = reviewingTextAnalizator;
         }
 
         public IEnumerable<GomelSatNewsModel> GetNews()
@@ -94,7 +98,8 @@ namespace Services.GomelSat
             {
                 AnalizedTextModels = analizedResults,
                 ContentText = analizingText.NewsText,
-                HeaderText = analizingText.NewsHeader
+                HeaderText = analizingText.NewsHeader,
+                Id = id
             };
         }
 
@@ -118,6 +123,31 @@ namespace Services.GomelSat
                     Name = model.Name
                 })
                 .ToList();
+        }
+
+        public ReviewingDataViewModel GetReviewingData(long id)
+        {
+            var getReviewingTextByIdQuery = new GetReviewingTextByIdQuery { Id = id };
+            var textModel = queryDispatcher.Dispatch<GetReviewingTextByIdQuery, AnalizingTextDataBaseModel>(getReviewingTextByIdQuery);
+
+            var formattedImageLink = textModel.ImageLink == null ? null : textModel.ImageLink.Link;
+            var formattedSourceLink = textModel.SourceLink == null ? null : textModel.SourceLink.Link;
+            var formattedText = reviewingTextAnalizator.GetFormattedText(textModel.ContentText, textModel.HeaderText, formattedImageLink, formattedSourceLink);
+            var shortText = reviewingTextAnalizator.GetShortText(formattedText);
+
+            var titleExists = !string.IsNullOrWhiteSpace(textModel.HeaderText);
+            var imageExists = textModel.ImageLinkId != null;
+            var sourceLinkExists = textModel.SourceLinkId != null;
+
+            return new ReviewingDataViewModel
+            {
+                Title = textModel.HeaderText,
+                TitleExists = titleExists,
+                Text = formattedText,
+                ImageExists = imageExists,
+                LinkExists = sourceLinkExists,
+                ShortText = shortText
+            };
         }
 
         private void SynchonizeNewsWithSite()

@@ -16,5 +16,7 @@ namespace Services.GomelSat
         void RefreshNews();
 
         IEnumerable<SiteLinkViewModel> GetGomelSatSiteLinks();
+
+        ReviewingDataViewModel GetReviewingData(long id);
     }
 }

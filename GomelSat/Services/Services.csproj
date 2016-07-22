@@ -52,6 +52,7 @@
     <Compile Include="GomelSat\GomelSatService.cs" />
     <Compile Include="GomelSat\IGomelSatService.cs" />
     <Compile Include="GomelSat\Models\AnalizedDataViewModel.cs" />
+    <Compile Include="GomelSat\Models\ReviewingDataViewModel.cs" />
     <Compile Include="GomelSat\Models\SiteLinkViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Words\IWordService.cs" />

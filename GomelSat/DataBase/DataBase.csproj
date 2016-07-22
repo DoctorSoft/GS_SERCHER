@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AnalizingTextModels\AnalizingTextModelConfigurations.cs" />
+    <Compile Include="Configurations\AnalizingTextModels\ImageLinkModelConfigurations.cs" />
+    <Compile Include="Configurations\AnalizingTextModels\SourceLinkModelConfigurations.cs" />
     <Compile Include="Configurations\NewsModels\GomelSatNewsModelConfigurations.cs" />
     <Compile Include="Configurations\SettingsModels\RequestRecordModelConfigurations.cs" />
     <Compile Include="Configurations\SiteLinkModels\GomelSatSiteLinkModelConfigurations.cs" />
@@ -75,8 +78,14 @@
     <Compile Include="Migrations\201607212034211_AddGomelSatSiteLinkModels.Designer.cs">
       <DependentUpon>201607212034211_AddGomelSatSiteLinkModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607222059221_AddReviewingModels.cs" />
+    <Compile Include="Migrations\201607222059221_AddReviewingModels.Designer.cs">
+      <DependentUpon>201607222059221_AddReviewingModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AnalizingTextModels\AnalizingTextDataBaseModel.cs" />
+    <Compile Include="Models\AnalizingTextModels\ImageLinkDataBaseModel.cs" />
+    <Compile Include="Models\AnalizingTextModels\SourceLinkDataBaseModel.cs" />
     <Compile Include="Models\NewsModels\GomelSatNewsDataBaseModel.cs" />
     <Compile Include="Models\SettingsModels\RequestRecordDataBaseModel.cs" />
     <Compile Include="Models\SiteLinkModels\GomelSatSiteLinkDataBaseModel.cs" />
@@ -112,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607212034211_AddGomelSatSiteLinkModels.resx">
       <DependentUpon>201607212034211_AddGomelSatSiteLinkModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607222059221_AddReviewingModels.resx">
+      <DependentUpon>201607222059221_AddReviewingModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -31,5 +31,11 @@ namespace GomelSat.Controllers
             var analizedResults = gomelSatService.GetAnalizedData(id);
             return View(analizedResults);
         }
+
+        public ActionResult ReviewingData(long id)
+        {
+            var reviewingData = gomelSatService.GetReviewingData(id);
+            return View(reviewingData);
+        }
     }
 }

@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "ReviewingData";
+}
+
+@model Services.GomelSat.Models.ReviewingDataViewModel
+
+@section scripts
+{
+    <script type="text/javascript">
+        function ShowModals() {
+            $("#inputTypeModalButton").click();
+        }
+
+        ShowModals();
+    </script>
+}
+
+
+<button id="inputTypeModalButton" type="button" data-toggle="modal" data-target="#inputTypeModal" hidden>Open Modal</button>
+
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="inputTypeModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div>
+    <h3 class="news-text-header">Headline</h3>
+    <input type="text" value="@Model.Title" class="header-text"/>
+
+    <h3 class="news-text-header">Short Text</h3>
+    <textarea class="shot-text-area">@Model.ShortText</textarea>
+
+    <h3 class="news-text-header">Text</h3>
+    <textarea class="long-text-area">@Model.Text</textarea>
+
+</div>

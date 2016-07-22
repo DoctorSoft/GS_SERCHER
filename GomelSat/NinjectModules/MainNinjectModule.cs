@@ -42,6 +42,7 @@ namespace NinjectModules
             //// Text analyze
             Bind<object>().To<AddAnalizingTextCommandHandler>().WhenInjectedInto<CommandDispatcher>().InRequestScope();
             Bind<object>().To<GetAnalizingTextByIdQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();
+            Bind<object>().To<GetReviewingTextByIdQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();
 
             //// Gomel sat service
             Bind<ISiteDataProvider>().To<GomelSatDataProvider>().WhenInjectedInto<GomelSatService>().InRequestScope();
@@ -49,6 +50,7 @@ namespace NinjectModules
             Bind<ISiteNewsContentParser<GomelSatNewsContentModel>>().To<GomelSatNewsContentParser>().WhenInjectedInto<GomelSatService>().InRequestScope();
             Bind<IGomelSatService>().To<GomelSatService>().InRequestScope();
             Bind<ITextAnalizator<GomelSatNewsModel>>().To<GomelSatTextAnalizator>().WhenInjectedInto<GomelSatService>().InRequestScope();
+            Bind<IReviewingTextAnalizator>().To<GomelSatReviewingTextAnalizator>().WhenInjectedInto<GomelSatService>().InRequestScope();
 
             Bind<object>().To<SynchronizeGomelSatNewsCommandHandler>().WhenInjectedInto<CommandDispatcher>().InRequestScope();
             Bind<object>().To<GetGomelSatNewsQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();

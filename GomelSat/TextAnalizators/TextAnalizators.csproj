@@ -42,10 +42,12 @@
   <ItemGroup>
     <Compile Include="GomelSatTextAnalizator.cs" />
     <Compile Include="Helpers\TagsHandleHelper.cs" />
+    <Compile Include="IReviewingTextAnalizator.cs" />
     <Compile Include="ITextAnalizator.cs" />
     <Compile Include="Models\AnalizingTextModel.cs" />
     <Compile Include="Models\AnalizedTextModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GomelSatReviewingTextAnalizator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataParsers\DataParsers.csproj">
