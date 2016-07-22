@@ -232,14 +232,13 @@ textarea {
 }
 
 .gomel-sat-list-links {
-    width: 200px;
+    width: 250px;
     margin: 5px;
 	position: fixed;
 	z-index: 999;
 	left: 20px;
-	top: 150px;
+	bottom: 20px;
     text-decoration: none;
-	background: #428bca;
 }
 
 .gomel-sat-list-links li {
@@ -248,31 +247,40 @@ textarea {
 
 .gomel-sat-list-links li:hover {
     list-style-type: none;
-    background-color: #2a6496;
+    background-color: #428bca!important;
 }
 
 .gomel-sat-list-links a {
-    color: white;
-    background-color: #428bca;
+    color: #428bca;
+    background-color: white;
 }
 
 .gomel-sat-list-links a:link{
-    background-color: #428bca;
+	border-radius: 15px;
+    color: #428bca!important;
+    background-color: white!important;
 }
 
 .gomel-sat-list-links a:hover{
-    background-color: white;
-    color: #2a6496;
+    color: white;
+    background-color: #428bca!important;
+}
+
+.gomel-sat-list-links a:visited{
+	border-radius: 15px;
+    color: #428bca!important;
+    background-color: white!important;
 }
 
 .gomel-sat-list-links a:active{
-    background-color: white;
-    color: #2a6496;
+    color: white;
+    background-color: #428bca!important;
 }
 
 .gomel-sat-list-links a:focus{
-    background-color: white;
-    color: #2a6496;
+	border-radius: 15px;
+    color: #428bca!important;
+    background-color: white!important;
 }
 
 .text-white {
