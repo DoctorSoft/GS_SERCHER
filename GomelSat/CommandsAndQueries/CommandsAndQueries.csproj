@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="CommandsAndHandlers\AnalizingTexts\AddAnalizingTextCommand.cs" />
     <Compile Include="CommandsAndHandlers\AnalizingTexts\AddAnalizingTextCommandHandler.cs" />
+    <Compile Include="CommandsAndHandlers\AnalizingTexts\UpdateAnalizingTextCommandHandler.cs" />
+    <Compile Include="CommandsAndHandlers\AnalizingTexts\UpdateAnalizingTextCommand.cs" />
     <Compile Include="CommandsAndHandlers\GomelSatNews\AddGomelSatNewsContentsCommand.cs" />
     <Compile Include="CommandsAndHandlers\GomelSatNews\AddGomelSatNewsContentsCommandHandler.cs" />
     <Compile Include="CommandsAndHandlers\GomelSatNews\RemoveLastGomelSatNewsCommand.cs" />

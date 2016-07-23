@@ -307,3 +307,25 @@ textarea {
     max-width: 100%;
     width: 100%
 }
+
+.dialog-box-header {
+    border-width: 2px;
+    border-style: double;
+    background-color: #428bca;
+    color: white;
+	border-radius: 10px;
+}
+
+.dialog-box-content {
+    margin: 10px;
+}
+
+.dialog-input {
+    min-width: 100%;
+    max-width: 100%
+}
+
+.go-to-review-button {
+    min-width: 100%;
+    max-width: 100%
+}

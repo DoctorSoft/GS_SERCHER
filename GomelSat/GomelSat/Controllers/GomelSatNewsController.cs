@@ -37,5 +37,26 @@ namespace GomelSat.Controllers
             var reviewingData = gomelSatService.GetReviewingData(id);
             return View(reviewingData);
         }
+
+        [HttpPost]
+        public ActionResult InsertHeaderToAnalizingText(long id, string newsHeader)
+        {
+            gomelSatService.UpdateAnalizingDataHeader(id, newsHeader);
+            return RedirectToAction("ReviewingData", new { id = id });
+        }
+
+        [HttpPost]
+        public ActionResult InsertImageLinkToAnalizingText(long id, string imageLink)
+        {
+            gomelSatService.UpdateAnalizingDataImageLink(id, imageLink);
+            return RedirectToAction("ReviewingData", new { id = id });
+        }
+
+        [HttpPost]
+        public ActionResult InsertSourceLinkToAnalizingText(long id, string sourceLink)
+        {
+            gomelSatService.UpdateAnalizingDataSourceLink(id, sourceLink);
+            return RedirectToAction("ReviewingData", new { id = id });
+        }
     }
 }

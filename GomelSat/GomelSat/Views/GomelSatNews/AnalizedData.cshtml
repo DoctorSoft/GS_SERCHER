@@ -26,12 +26,13 @@
     <div class="following-box-content following-box-with-scroll">
         <h4><b>@Model.HeaderText</b></h4>
 
+        <div class="go-to-review-button">
+            <a class="btn btn-primary go-to-review-button" href="@Url.Action("ReviewingData", "GomelSatNews", new { id = @Model.Id })">Go to review</a>
+        </div>
+
         <br/>
         <br/>
 
         @Model.ContentText
-    </div>
-    <div>
-        <a class="btn btn-primary" href="@Url.Action("ReviewingData", "GomelSatNews", new { id = @Model.Id })">Go to review</a>
     </div>
 </div>

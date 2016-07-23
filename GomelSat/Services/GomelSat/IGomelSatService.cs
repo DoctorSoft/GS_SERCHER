@@ -18,5 +18,11 @@ namespace Services.GomelSat
         IEnumerable<SiteLinkViewModel> GetGomelSatSiteLinks();
 
         ReviewingDataViewModel GetReviewingData(long id);
+
+        void UpdateAnalizingDataHeader(long id, string header);
+
+        void UpdateAnalizingDataImageLink(long id, string link);
+
+        void UpdateAnalizingDataSourceLink(long id, string link);
     }
 }

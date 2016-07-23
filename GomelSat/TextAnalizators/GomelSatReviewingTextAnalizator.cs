@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TextAnalizators
 {
@@ -6,9 +7,14 @@ namespace TextAnalizators
     {
         public string GetFormattedText(string text, string title, string formattedImage, string formattedSourceLink)
         {
-            return formattedImage + "[b][color=#000066]" + title + "[/color][/b]" + "\r\n"
-                   + text +
-                   "\r\n\r\n" + formattedSourceLink;
+            var fomattedTextWithoutSourceLink = formattedImage + "[b][color=#000066]" + title + "[/color][/b]" + "\r\n"
+                                                + text;
+
+            fomattedTextWithoutSourceLink = Regex.Replace(fomattedTextWithoutSourceLink, "[^\r\n]([\r|\n])*$", "");
+
+            var formattedText = fomattedTextWithoutSourceLink + "\r\n\r\n" + formattedSourceLink;
+
+            return formattedText;
         }
 
         public string GetShortText(string formattedText)
@@ -38,12 +44,16 @@ namespace TextAnalizators
 
         public string GetFormattedImageLink(string simpleImageLink)
         {
-            throw new System.NotImplementedException();
+            var formattedLink = Regex.Replace(simpleImageLink, "^\\[img\\]", "[IMG=left]");
+            return formattedLink;
         }
 
         public string GetFormattedSourceLink(string simpleSourceLink)
         {
-            throw new System.NotImplementedException();
+            var urlWithoutPrefix = Regex.Replace(simpleSourceLink, "^((http|https):\\/\\/){0,1}(www\\.){0,1}", "");
+            var formattedUrl = Regex.Match(urlWithoutPrefix, "^[^\\/]*").Value;
+
+            return formattedUrl;
         }
     }
 }

@@ -43,6 +43,10 @@ namespace NinjectModules
             Bind<object>().To<AddAnalizingTextCommandHandler>().WhenInjectedInto<CommandDispatcher>().InRequestScope();
             Bind<object>().To<GetAnalizingTextByIdQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();
             Bind<object>().To<GetReviewingTextByIdQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();
+            Bind<object>()
+                .To<UpdateAnalizingTextCommandHandler>()
+                .WhenInjectedInto<CommandDispatcher>()
+                .InRequestScope();
 
             //// Gomel sat service
             Bind<ISiteDataProvider>().To<GomelSatDataProvider>().WhenInjectedInto<GomelSatService>().InRequestScope();
