@@ -5,6 +5,7 @@ using CommandsAndQueries.CommandsAndHandlers.Words;
 using CommandsAndQueries.Dispatchers;
 using CommandsAndQueries.QueriesAndHandlers.AnalizingTexts;
 using CommandsAndQueries.QueriesAndHandlers.GomelSatNews;
+using CommandsAndQueries.QueriesAndHandlers.GomelSatSiteLinks;
 using CommandsAndQueries.QueriesAndHandlers.RequestRecords;
 using CommandsAndQueries.QueriesAndHandlers.Words;
 using Common.CommandQueryTools;
@@ -41,6 +42,11 @@ namespace NinjectModules
             //// Text analyze
             Bind<object>().To<AddAnalizingTextCommandHandler>().WhenInjectedInto<CommandDispatcher>().InRequestScope();
             Bind<object>().To<GetAnalizingTextByIdQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();
+            Bind<object>().To<GetReviewingTextByIdQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();
+            Bind<object>()
+                .To<UpdateAnalizingTextCommandHandler>()
+                .WhenInjectedInto<CommandDispatcher>()
+                .InRequestScope();
 
             //// Gomel sat service
             Bind<ISiteDataProvider>().To<GomelSatDataProvider>().WhenInjectedInto<GomelSatService>().InRequestScope();
@@ -48,12 +54,14 @@ namespace NinjectModules
             Bind<ISiteNewsContentParser<GomelSatNewsContentModel>>().To<GomelSatNewsContentParser>().WhenInjectedInto<GomelSatService>().InRequestScope();
             Bind<IGomelSatService>().To<GomelSatService>().InRequestScope();
             Bind<ITextAnalizator<GomelSatNewsModel>>().To<GomelSatTextAnalizator>().WhenInjectedInto<GomelSatService>().InRequestScope();
+            Bind<IReviewingTextAnalizator>().To<GomelSatReviewingTextAnalizator>().WhenInjectedInto<GomelSatService>().InRequestScope();
 
             Bind<object>().To<SynchronizeGomelSatNewsCommandHandler>().WhenInjectedInto<CommandDispatcher>().InRequestScope();
             Bind<object>().To<GetGomelSatNewsQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();
             Bind<object>().To<GetGomelSatNewsWithoutContentQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();
             Bind<object>().To<AddGomelSatNewsContentsCommandHandler>().WhenInjectedInto<CommandDispatcher>().InRequestScope();
             Bind<object>().To<RemoveLastGomelSatNewsCommandHandler>().WhenInjectedInto<CommandDispatcher>().InRequestScope();
+            Bind<object>().To<GetGomelSatSiteLinksQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();
 
             //// Words service
             Bind<IWordService>().To<WordService>().InRequestScope();

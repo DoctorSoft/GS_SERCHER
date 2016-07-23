@@ -144,26 +144,51 @@ textarea {
     background-color: #428bca;
 }
 
+.navbar-line .dropdown-menu{
+    background-color: #428bca!important;
+}
+
+.open{
+    background-color: #2a6496;
+}
+
 .navbar-line .navbar-brand {
     color: white
 }
 
 .navbar-line .navbar-nav li a{
-    color: white
+    color: white;
+    background-color: #428bca;
 }
 
 .navbar-line .navbar-nav li a:hover{
     background-color: #2a6496;
 }
 
+.navbar-line .navbar-nav li a:active{
+    background-color: #2a6496;
+}
+
+.navbar-line .navbar-nav li a:focus{
+    background-color: #2a6496!important;
+}
+
 .underlined-word {
+    color: #b62a64;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 30px;
+}
+
+.underlined-word:hover {
     background-color: #962a64;
     color: white;
     font-weight: bold;
-    text-transform: uppercase;
-        padding-left: 20px;
-    padding-right: 20px;
-	border-radius: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 30px;
+    cursor: pointer
 }
 
 .news-text-header {
@@ -171,4 +196,136 @@ textarea {
     font-weight: bold;
     font-size: 17px;
     text-transform: uppercase;
+}
+
+.nav-dropdown-button:link {
+    width: 200px;
+    text-decoration: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+	position: fixed;
+	z-index: 999;
+	left: 20px;
+	top: 80px;
+	background: #428bca;
+    color: white;
+	border-radius: 30px;
+    text-align: center
+}
+
+.nav-dropdown-button:hover {
+    background: #2a6496;
+    text-decoration: none;
+}
+
+.nav-dropdown-button:active {
+	background: #428bca;
+    text-decoration: none;
+}
+
+.nav-dropdown-button:visited {
+	background: #428bca;
+    color: white;
+    text-decoration: none;
+}
+
+.gomel-sat-list-links {
+    width: 250px;
+    margin: 5px;
+	position: fixed;
+	z-index: 999;
+	left: 20px;
+	bottom: 20px;
+    text-decoration: none;
+}
+
+.gomel-sat-list-links li {
+    list-style-type: none;
+}
+
+.gomel-sat-list-links li:hover {
+    list-style-type: none;
+    background-color: #428bca!important;
+}
+
+.gomel-sat-list-links a {
+    color: #428bca;
+    background-color: white;
+}
+
+.gomel-sat-list-links a:link{
+	border-radius: 15px;
+    color: #428bca!important;
+    background-color: white!important;
+}
+
+.gomel-sat-list-links a:hover{
+    color: white;
+    background-color: #428bca!important;
+}
+
+.gomel-sat-list-links a:visited{
+	border-radius: 15px;
+    color: #428bca!important;
+    background-color: white!important;
+}
+
+.gomel-sat-list-links a:active{
+    color: white;
+    background-color: #428bca!important;
+}
+
+.gomel-sat-list-links a:focus{
+	border-radius: 15px;
+    color: #428bca!important;
+    background-color: white!important;
+}
+
+.text-white {
+    color: white
+}
+
+.shot-text-area {
+    max-width: 100%;
+    width: 100%;
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
+}
+
+.long-text-area {
+    max-width: 100%;
+    width: 100%;
+    height: 600px;
+    min-height: 600px;
+    max-height: 600px;
+}
+
+.header-text {
+    max-width: 100%;
+    width: 100%
+}
+
+.dialog-box-header {
+    border-width: 2px;
+    border-style: double;
+    background-color: #428bca;
+    color: white;
+	border-radius: 10px;
+}
+
+.dialog-box-content {
+    margin: 10px;
+}
+
+.dialog-input {
+    min-width: 100%;
+    max-width: 100%
+}
+
+.go-to-review-button {
+    min-width: 100%;
+    max-width: 100%
 }

@@ -12,7 +12,7 @@ namespace TextAnalizators
 {
     public class GomelSatTextAnalizator : ITextAnalizator<GomelSatNewsModel>
     {
-        public static char[] DelimiterChars = { ' ', ',', '.', ':', '\t', ';', '-', '?', '!', '_', '(', ')', '«', '»', '\'', '\"', '/', '<', '>', '\n', '\0', '\\', '–', '[', ']', '\r' };
+        public static char[] DelimiterChars = { ' ', ',', '.', ':', '\t', ';', '-', '?', '!', '_', '(', ')', '«', '»', '\'', '\"', '/', '<', '>', '\n', '\0', '\\', '–', '[', ']', '\r', '—' };
 
         public AnalizedTextModel Analize(GomelSatNewsModel newsContentModel, IEnumerable<string> wordList, IEnumerable<string> banList)
         {

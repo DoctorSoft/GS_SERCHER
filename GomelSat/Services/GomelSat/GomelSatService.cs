@@ -6,10 +6,13 @@ using CommandsAndQueries.CommandsAndHandlers.GomelSatNews;
 using CommandsAndQueries.CommandsAndHandlers.RequestRecords;
 using CommandsAndQueries.QueriesAndHandlers.AnalizingTexts;
 using CommandsAndQueries.QueriesAndHandlers.GomelSatNews;
+using CommandsAndQueries.QueriesAndHandlers.GomelSatSiteLinks;
 using CommandsAndQueries.QueriesAndHandlers.RequestRecords;
 using Common.CommandQueryTools;
 using Common.Constants;
 using Common.Enums;
+using DataBase.Models.AnalizingTextModels;
+using DataBase.Models.SiteLinkModels;
 using DataParsers;
 using DataParsers.Models;
 using DataParsers.NewsParsers;
@@ -38,7 +41,9 @@ namespace Services.GomelSat
 
         private readonly ITextAnalizator<GomelSatNewsModel> gomelSaTextAnalizator;
 
-        public GomelSatService(ISiteNewsHeadersParser<GomelSatNewsHeaderModel> gomelSatNewsHeadersParser, ISiteDataProvider gomelSatDataProvider, ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher, ISiteNewsContentParser<GomelSatNewsContentModel> gomelSatNewsContentParser, ITextAnalizator<GomelSatNewsModel> gomelSaTextAnalizator, IWordService wordService)
+        private readonly IReviewingTextAnalizator reviewingTextAnalizator;
+
+        public GomelSatService(ISiteNewsHeadersParser<GomelSatNewsHeaderModel> gomelSatNewsHeadersParser, ISiteDataProvider gomelSatDataProvider, ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher, ISiteNewsContentParser<GomelSatNewsContentModel> gomelSatNewsContentParser, ITextAnalizator<GomelSatNewsModel> gomelSaTextAnalizator, IWordService wordService, IReviewingTextAnalizator reviewingTextAnalizator)
         {
             this.gomelSatNewsHeadersParser = gomelSatNewsHeadersParser;
             this.gomelSatDataProvider = gomelSatDataProvider;
@@ -47,6 +52,7 @@ namespace Services.GomelSat
             this.gomelSatNewsContentParser = gomelSatNewsContentParser;
             this.gomelSaTextAnalizator = gomelSaTextAnalizator;
             this.wordService = wordService;
+            this.reviewingTextAnalizator = reviewingTextAnalizator;
         }
 
         public IEnumerable<GomelSatNewsModel> GetNews()
@@ -92,7 +98,8 @@ namespace Services.GomelSat
             {
                 AnalizedTextModels = analizedResults,
                 ContentText = analizingText.NewsText,
-                HeaderText = analizingText.NewsHeader
+                HeaderText = analizingText.NewsHeader,
+                Id = id
             };
         }
 
@@ -102,6 +109,105 @@ namespace Services.GomelSat
             commandDispatcher.Dispatch<RemoveLastGomelSatNewsCommand, VoidCommandResponse>(removeLastGomelSatNewsCommand);
 
             SynchonizeNewsWithSite();
+        }
+
+        public IEnumerable<SiteLinkViewModel> GetGomelSatSiteLinks()
+        {
+            var getGomelSatSiteLinksQuery = new GetGomelSatSiteLinksQuery();
+            var links = queryDispatcher.Dispatch<GetGomelSatSiteLinksQuery, IEnumerable<GomelSatSiteLinkDataBaseModel>>(getGomelSatSiteLinksQuery);
+
+            return links
+                .Select(model => new SiteLinkViewModel
+                {
+                    Link = model.Link,
+                    Name = model.Name
+                })
+                .ToList();
+        }
+
+        public ReviewingDataViewModel GetReviewingData(long id)
+        {
+            var getReviewingTextByIdQuery = new GetReviewingTextByIdQuery { Id = id };
+            var textModel = queryDispatcher.Dispatch<GetReviewingTextByIdQuery, AnalizingTextDataBaseModel>(getReviewingTextByIdQuery);
+
+            var formattedImageLink = textModel.ImageLink == null ? null : textModel.ImageLink.Link;
+            var formattedSourceLink = textModel.SourceLink == null ? null : textModel.SourceLink.Link;
+            var formattedText = reviewingTextAnalizator.GetFormattedText(textModel.ContentText, textModel.HeaderText, formattedImageLink, formattedSourceLink);
+            var shortText = reviewingTextAnalizator.GetShortText(formattedText);
+
+            var titleExists = !string.IsNullOrWhiteSpace(textModel.HeaderText);
+            var imageExists = textModel.ImageLinkId != null;
+            var sourceLinkExists = textModel.SourceLinkId != null;
+
+            return new ReviewingDataViewModel
+            {
+                Id = id,
+                Title = textModel.HeaderText,
+                TitleExists = titleExists,
+                Text = formattedText,
+                ImageExists = imageExists,
+                LinkExists = sourceLinkExists,
+                ShortText = shortText
+            };
+        }
+
+        public void UpdateAnalizingDataHeader(long id, string header)
+        {
+            var getReviewingTextByIdQuery = new GetReviewingTextByIdQuery { Id = id };
+            var textModel = queryDispatcher.Dispatch<GetReviewingTextByIdQuery, AnalizingTextDataBaseModel>(getReviewingTextByIdQuery);
+
+            textModel.HeaderText = header;
+
+            var updateAnalizingTextCommand = new UpdateAnalizingTextCommand {AnalizingText = textModel};
+            commandDispatcher.Dispatch<UpdateAnalizingTextCommand, VoidCommandResponse>(updateAnalizingTextCommand);
+        }
+
+        public void UpdateAnalizingDataImageLink(long id, string link)
+        {
+            if (string.IsNullOrWhiteSpace(link))
+            {
+                return;
+            }
+
+            var getReviewingTextByIdQuery = new GetReviewingTextByIdQuery { Id = id };
+            var textModel = queryDispatcher.Dispatch<GetReviewingTextByIdQuery, AnalizingTextDataBaseModel>(getReviewingTextByIdQuery);
+
+            link = reviewingTextAnalizator.GetFormattedImageLink(link);
+
+            if (string.IsNullOrWhiteSpace(link))
+            {
+                return;
+            }
+
+            textModel.ImageLink = new ImageLinkDataBaseModel { Link = link };
+            textModel.ImageLinkId = 0;
+
+            var updateAnalizingTextCommand = new UpdateAnalizingTextCommand { AnalizingText = textModel };
+            commandDispatcher.Dispatch<UpdateAnalizingTextCommand, VoidCommandResponse>(updateAnalizingTextCommand);
+        }
+
+        public void UpdateAnalizingDataSourceLink(long id, string link)
+        {
+            if (string.IsNullOrWhiteSpace(link))
+            {
+                return;
+            }
+
+            var getReviewingTextByIdQuery = new GetReviewingTextByIdQuery { Id = id };
+            var textModel = queryDispatcher.Dispatch<GetReviewingTextByIdQuery, AnalizingTextDataBaseModel>(getReviewingTextByIdQuery);
+
+            link = reviewingTextAnalizator.GetFormattedSourceLink(link);
+
+            if (string.IsNullOrWhiteSpace(link))
+            {
+                return;
+            }
+
+            textModel.SourceLink = new SourceLinkDataBaseModel { Link = link };
+            textModel.SourceLinkId = 0;
+
+            var updateAnalizingTextCommand = new UpdateAnalizingTextCommand { AnalizingText = textModel };
+            commandDispatcher.Dispatch<UpdateAnalizingTextCommand, VoidCommandResponse>(updateAnalizingTextCommand); 
         }
 
         private void SynchonizeNewsWithSite()

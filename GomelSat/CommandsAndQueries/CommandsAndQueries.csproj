@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="CommandsAndHandlers\AnalizingTexts\AddAnalizingTextCommand.cs" />
     <Compile Include="CommandsAndHandlers\AnalizingTexts\AddAnalizingTextCommandHandler.cs" />
+    <Compile Include="CommandsAndHandlers\AnalizingTexts\UpdateAnalizingTextCommandHandler.cs" />
+    <Compile Include="CommandsAndHandlers\AnalizingTexts\UpdateAnalizingTextCommand.cs" />
     <Compile Include="CommandsAndHandlers\GomelSatNews\AddGomelSatNewsContentsCommand.cs" />
     <Compile Include="CommandsAndHandlers\GomelSatNews\AddGomelSatNewsContentsCommandHandler.cs" />
     <Compile Include="CommandsAndHandlers\GomelSatNews\RemoveLastGomelSatNewsCommand.cs" />
@@ -68,10 +70,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueriesAndHandlers\AnalizingTexts\GetAnalizingTextByIdQuery.cs" />
     <Compile Include="QueriesAndHandlers\AnalizingTexts\GetAnalizingTextByIdQueryHandler.cs" />
+    <Compile Include="QueriesAndHandlers\AnalizingTexts\GetReviewingTextByIdQuery.cs" />
+    <Compile Include="QueriesAndHandlers\AnalizingTexts\GetReviewingTextByIdQueryHandler.cs" />
     <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsQuery.cs" />
     <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsQueryHandler.cs" />
     <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsWithoutContentQuery.cs" />
     <Compile Include="QueriesAndHandlers\GomelSatNews\GetGomelSatNewsWithoutContentQueryHandler.cs" />
+    <Compile Include="QueriesAndHandlers\GomelSatSiteLinks\GetGomelSatSiteLinksQuery.cs" />
+    <Compile Include="QueriesAndHandlers\GomelSatSiteLinks\GetGomelSatSiteLinksQueryHandler.cs" />
     <Compile Include="QueriesAndHandlers\RequestRecords\GetLastRequestDateQuery.cs" />
     <Compile Include="QueriesAndHandlers\RequestRecords\GetLastRequestDateQueryHandler.cs" />
     <Compile Include="QueriesAndHandlers\Words\GetLastAddedWordListQuery.cs" />
