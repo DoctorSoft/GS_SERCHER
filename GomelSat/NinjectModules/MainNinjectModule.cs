@@ -18,6 +18,7 @@ using DataProviders;
 using DataProviders.SiteDataPrividers;
 using DataProviders.WordsDataProviders;
 using FilesManagers.WordFileManagers;
+using GomelSatEngine;
 using Ninject.Modules;
 using Ninject.Web.Common;
 using Services.GomelSat;
@@ -55,6 +56,7 @@ namespace NinjectModules
             Bind<IGomelSatService>().To<GomelSatService>().InRequestScope();
             Bind<ITextAnalizator<GomelSatNewsModel>>().To<GomelSatTextAnalizator>().WhenInjectedInto<GomelSatService>().InRequestScope();
             Bind<IReviewingTextAnalizator>().To<GomelSatReviewingTextAnalizator>().WhenInjectedInto<GomelSatService>().InRequestScope();
+            Bind<IEnterGomelSatNewsEngine>().To<EnterGomelSatNewsEngine>().WhenInjectedInto<GomelSatService>().InRequestScope();
 
             Bind<object>().To<SynchronizeGomelSatNewsCommandHandler>().WhenInjectedInto<CommandDispatcher>().InRequestScope();
             Bind<object>().To<GetGomelSatNewsQueryHandler>().WhenInjectedInto<QueryDispatcher>().InRequestScope();

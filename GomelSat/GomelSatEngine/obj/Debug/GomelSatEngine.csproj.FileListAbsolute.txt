@@ -1,0 +1,7 @@
+D:\!Gomel-sat\GomelSat\GomelSatEngine\bin\Debug\GomelSatEngine.dll
+D:\!Gomel-sat\GomelSat\GomelSatEngine\bin\Debug\GomelSatEngine.pdb
+D:\!Gomel-sat\GomelSat\GomelSatEngine\bin\Debug\WebDriver.dll
+D:\!Gomel-sat\GomelSat\GomelSatEngine\bin\Debug\WebDriver.xml
+D:\!Gomel-sat\GomelSat\GomelSatEngine\obj\Debug\GomelSatEngine.dll
+D:\!Gomel-sat\GomelSat\GomelSatEngine\obj\Debug\GomelSatEngine.pdb
+D:\!Gomel-sat\GomelSat\GomelSatEngine\obj\Debug\GomelSatEngine.csprojResolveAssemblyReference.cache

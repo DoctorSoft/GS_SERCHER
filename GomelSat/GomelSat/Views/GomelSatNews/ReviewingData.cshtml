@@ -100,7 +100,8 @@
                 <div class="modal-body dialog-box-content">
                     <div class="text-center">
                         <h4 class="alert-info alert">
-                            Please, enter <b>image link</b> (formatted or not) here before starting of review.
+                            Please, enter <b>image link</b> (formatted or not) here before starting of review. <br/>
+                            You can upload image <b><a href="http://img-host.org.ua/">here</a></b>
                         </h4>
                     </div>
 
@@ -170,5 +171,12 @@
 
     <h3 class="news-text-header">Text</h3>
     <textarea class="long-text-area">@Model.Text</textarea>
+
+    <br/>
+    <br />
+
+    <div>
+        <a href="@Url.Action("OpenGomelSatNewsRedactor", "GomelSatNews", new {id = @Model.Id})" class="btn btn-primary">Add new acticle</a>
+    </div>
 
 </div>

@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextAnalizators", "TextAnal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesManagers", "FilesManagers\FilesManagers.csproj", "{D3759511-37C7-420C-BC88-61D8FF8EBAEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GomelSatEngine", "GomelSatEngine\GomelSatEngine.csproj", "{FE7D4567-97AC-4271-91FD-B6C7DE0755D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{D3759511-37C7-420C-BC88-61D8FF8EBAEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3759511-37C7-420C-BC88-61D8FF8EBAEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3759511-37C7-420C-BC88-61D8FF8EBAEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE7D4567-97AC-4271-91FD-B6C7DE0755D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7D4567-97AC-4271-91FD-B6C7DE0755D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7D4567-97AC-4271-91FD-B6C7DE0755D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7D4567-97AC-4271-91FD-B6C7DE0755D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
