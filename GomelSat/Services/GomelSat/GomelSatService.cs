@@ -214,10 +214,9 @@ namespace Services.GomelSat
             commandDispatcher.Dispatch<UpdateAnalizingTextCommand, VoidCommandResponse>(updateAnalizingTextCommand); 
         }
 
-        public void OpenGomelSatRedactor(long id)
+        public void OpenGomelSatRedactor(string header, string shortText, string text)
         {
-            var reviewingData = GetReviewingData(id);
-            enterGomelSatNewsEngine.Run(reviewingData.Title, reviewingData.ShortText, reviewingData.Text);
+            enterGomelSatNewsEngine.Run(header, shortText, text);
         }
 
         private void SynchonizeNewsWithSite()

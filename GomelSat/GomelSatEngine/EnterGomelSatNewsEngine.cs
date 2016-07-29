@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -66,9 +67,15 @@ namespace GomelSatEngine
                 IList<IWebElement> textInputs = driver.FindElements(By.TagName("textarea"));
                 textInputs.First(element => element.GetAttribute("name") == "full_story").SendKeys(text);
 
-                while (driver.FindElements(By.TagName("input")).Any(element => element.GetAttribute("value") == "Добавить"))
+                try
                 {
-                    Thread.Sleep(1000);
+                    while (driver.FindElements(By.TagName("input")).Any(element => element.GetAttribute("value") == "Добавить"))
+                    {
+                        Thread.Sleep(1000);
+                    }
+                }
+                catch 
+                {
                 }
             }
         }

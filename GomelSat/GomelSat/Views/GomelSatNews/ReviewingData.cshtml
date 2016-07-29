@@ -163,20 +163,23 @@
 </div>
 
 <div>
-    <h3 class="news-text-header">Headline</h3>
-    <input type="text" value="@Model.Title" class="header-text" />
+    @using (Html.BeginForm("OpenGomelSatNewsRedactor", "GomelSatNews", new {Id = @Model.Id}, FormMethod.Post, new {}))
+    {
+        <h3 class="news-text-header">Headline</h3>
+        <input type="text" value="@Model.Title" class="header-text" name="header"/>
 
-    <h3 class="news-text-header">Short Text</h3>
-    <textarea class="shot-text-area">@Model.ShortText</textarea>
+        <h3 class="news-text-header">Short Text</h3>
+        <textarea class="shot-text-area" name="shortText">@Model.ShortText</textarea>
 
-    <h3 class="news-text-header">Text</h3>
-    <textarea class="long-text-area">@Model.Text</textarea>
+        <h3 class="news-text-header">Text</h3>
+        <textarea class="long-text-area" name="text">@Model.Text</textarea>
 
-    <br/>
-    <br />
-
-    <div>
-        <a href="@Url.Action("OpenGomelSatNewsRedactor", "GomelSatNews", new {id = @Model.Id})" class="btn btn-primary">Add new acticle</a>
-    </div>
+        <br/>
+        <br/>
+        
+        <div>
+            <button type="submit" href="@Url.Action("OpenGomelSatNewsRedactor", "GomelSatNews", new {id = @Model.Id})" class="btn btn-primary">Add new article</button>
+        </div>
+    }
 
 </div>
