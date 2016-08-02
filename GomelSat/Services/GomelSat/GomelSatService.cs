@@ -18,6 +18,7 @@ using DataParsers.Models;
 using DataParsers.NewsParsers;
 using DataProviders;
 using DataProviders.SiteDataPrividers;
+using GomelSatEngine;
 using Services.GomelSat.Models;
 using Services.Words;
 using TextAnalizators;
@@ -43,7 +44,9 @@ namespace Services.GomelSat
 
         private readonly IReviewingTextAnalizator reviewingTextAnalizator;
 
-        public GomelSatService(ISiteNewsHeadersParser<GomelSatNewsHeaderModel> gomelSatNewsHeadersParser, ISiteDataProvider gomelSatDataProvider, ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher, ISiteNewsContentParser<GomelSatNewsContentModel> gomelSatNewsContentParser, ITextAnalizator<GomelSatNewsModel> gomelSaTextAnalizator, IWordService wordService, IReviewingTextAnalizator reviewingTextAnalizator)
+        private readonly IEnterGomelSatNewsEngine enterGomelSatNewsEngine;
+
+        public GomelSatService(ISiteNewsHeadersParser<GomelSatNewsHeaderModel> gomelSatNewsHeadersParser, ISiteDataProvider gomelSatDataProvider, ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher, ISiteNewsContentParser<GomelSatNewsContentModel> gomelSatNewsContentParser, ITextAnalizator<GomelSatNewsModel> gomelSaTextAnalizator, IWordService wordService, IReviewingTextAnalizator reviewingTextAnalizator, IEnterGomelSatNewsEngine enterGomelSatNewsEngine)
         {
             this.gomelSatNewsHeadersParser = gomelSatNewsHeadersParser;
             this.gomelSatDataProvider = gomelSatDataProvider;
@@ -53,6 +56,7 @@ namespace Services.GomelSat
             this.gomelSaTextAnalizator = gomelSaTextAnalizator;
             this.wordService = wordService;
             this.reviewingTextAnalizator = reviewingTextAnalizator;
+            this.enterGomelSatNewsEngine = enterGomelSatNewsEngine;
         }
 
         public IEnumerable<GomelSatNewsModel> GetNews()
@@ -209,6 +213,11 @@ namespace Services.GomelSat
 
             var updateAnalizingTextCommand = new UpdateAnalizingTextCommand { AnalizingText = textModel };
             commandDispatcher.Dispatch<UpdateAnalizingTextCommand, VoidCommandResponse>(updateAnalizingTextCommand); 
+        }
+
+        public void OpenGomelSatRedactor(string header, string shortText, string text)
+        {
+            enterGomelSatNewsEngine.Run(header, shortText, text);
         }
 
         private void SynchonizeNewsWithSite()

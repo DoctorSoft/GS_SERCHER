@@ -84,6 +84,10 @@
       <Project>{D3759511-37C7-420C-BC88-61D8FF8EBAEA}</Project>
       <Name>FilesManagers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GomelSatEngine\GomelSatEngine.csproj">
+      <Project>{FE7D4567-97AC-4271-91FD-B6C7DE0755D4}</Project>
+      <Name>GomelSatEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TextAnalizators\TextAnalizators.csproj">
       <Project>{7AD36110-ABB2-452F-922B-948485E975C8}</Project>
       <Name>TextAnalizators</Name>

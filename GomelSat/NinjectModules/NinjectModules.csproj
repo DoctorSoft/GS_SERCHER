@@ -89,6 +89,10 @@
       <Project>{D3759511-37C7-420C-BC88-61D8FF8EBAEA}</Project>
       <Name>FilesManagers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GomelSatEngine\GomelSatEngine.csproj">
+      <Project>{fe7d4567-97ac-4271-91fd-b6c7de0755d4}</Project>
+      <Name>GomelSatEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{56467a3d-0b3f-4c80-bfb1-dae9bf65fada}</Project>
       <Name>Services</Name>

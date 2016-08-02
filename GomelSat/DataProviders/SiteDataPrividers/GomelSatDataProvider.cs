@@ -6,20 +6,16 @@ namespace DataProviders.SiteDataPrividers
 {
     public class GomelSatDataProvider : ISiteDataProvider
     {
-        private readonly HttpClient httpClient;
-
-        public GomelSatDataProvider()
-        {
-            this.httpClient = new HttpClient();
-        }
-
         public string GetPageData(long page = SiteConstants.StartPage)
         {
-            var httpAddress = string.Format(SiteConstants.GomelSatSitePagePattern, page);
+            using (var httpClient = new HttpClient())
+            {
+                var httpAddress = string.Format(SiteConstants.GomelSatSitePagePattern, page);
 
-            var response = httpClient.GetStringAsync(httpAddress).Result;
+                var response = httpClient.GetStringAsync(httpAddress).Result;
 
-            return response;
+                return response;
+            }
         }
 
         public IEnumerable<string> GetPagesData(long startPage = SiteConstants.StartPage, long endPage = SiteConstants.EndPage)
@@ -32,9 +28,12 @@ namespace DataProviders.SiteDataPrividers
 
         public string GetNewsPageContentByUrl(string url)
         {
-            var response = httpClient.GetStringAsync(url).Result;
+            using (var httpClient = new HttpClient())
+            {
+                var response = httpClient.GetStringAsync(url).Result;
 
-            return response;
+                return response;
+            }
         }
     }
 }

@@ -24,5 +24,7 @@ namespace Services.GomelSat
         void UpdateAnalizingDataImageLink(long id, string link);
 
         void UpdateAnalizingDataSourceLink(long id, string link);
+
+        void OpenGomelSatRedactor(string header, string shortText, string text);
     }
 }

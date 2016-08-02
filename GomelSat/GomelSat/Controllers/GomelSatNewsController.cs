@@ -58,5 +58,12 @@ namespace GomelSat.Controllers
             gomelSatService.UpdateAnalizingDataSourceLink(id, sourceLink);
             return RedirectToAction("ReviewingData", new { id = id });
         }
+
+        [HttpPost]
+        public ActionResult OpenGomelSatNewsRedactor(string header, string shortText, string text)
+        {
+            gomelSatService.OpenGomelSatRedactor(header, shortText, text);
+            return RedirectToAction("Index", "GomelSatNews");
+        }
     }
 }
