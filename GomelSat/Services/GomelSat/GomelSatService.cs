@@ -91,6 +91,7 @@ namespace Services.GomelSat
             var wordList = gomelSaTextAnalizator.GetNewsWordList(analizingText, banList);
             var analizedResults = news
                 .Select(model => gomelSaTextAnalizator.Analize(model, wordList, banList))
+                .Where(model => model != null)
                 .OrderByDescending(model => model.FoundWordsCount)
                 .ToList();
 

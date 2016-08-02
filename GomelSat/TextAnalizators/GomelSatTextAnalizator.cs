@@ -16,6 +16,11 @@ namespace TextAnalizators
 
         public AnalizedTextModel Analize(GomelSatNewsModel newsContentModel, IEnumerable<string> wordList, IEnumerable<string> banList)
         {
+            if (string.IsNullOrWhiteSpace(newsContentModel.Text))
+            {
+                return null;
+            }
+
             var preparedNews = " " + TextHandleHelper.ConvertToPatternForm(newsContentModel.Text.ToLower()) + " ";
 
             var newsContentWordList = GetNewsWordList(new AnalizingTextModel {NewsText = preparedNews}, banList);
