@@ -221,7 +221,7 @@ namespace Services.GomelSat
 
         private void SynchonizeNewsWithSite()
         {
-            var pagesData = gomelSatDataProvider.GetPagesData();
+            var pagesData = gomelSatDataProvider.GetPagesData().ToList();
             var headers = pagesData
                 .SelectMany(s => gomelSatNewsHeadersParser.GetPageNewsHeaders(s))
                 .Where(model => !string.IsNullOrWhiteSpace(model.HeaderText) || !string.IsNullOrWhiteSpace(model.Link))

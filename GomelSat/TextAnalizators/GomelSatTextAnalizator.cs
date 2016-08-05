@@ -12,7 +12,7 @@ namespace TextAnalizators
 {
     public class GomelSatTextAnalizator : ITextAnalizator<GomelSatNewsModel>
     {
-        public static char[] DelimiterChars = { ' ', ',', '.', ':', '\t', ';', '-', '?', '!', '_', '(', ')', '«', '»', '\'', '\"', '/', '<', '>', '\n', '\0', '\\', '–', '[', ']', '\r', '—' };
+        public static char[] DelimiterChars = { '{', '}', ' ', ',', '.', ':', '\t', ';', '-', '?', '!', '_', '(', ')', '«', '»', '\'', '\"', '/', '<', '>', '\n', '\0', '\\', '–', '[', ']', '\r', '—' };
 
         public AnalizedTextModel Analize(GomelSatNewsModel newsContentModel, IEnumerable<string> wordList, IEnumerable<string> banList)
         {
@@ -23,7 +23,8 @@ namespace TextAnalizators
             var list = wordList
                 .Intersect(newsContentWordList)
                 .Where(s => !string.IsNullOrWhiteSpace(s) && s != TextHandleHelper.EnterPattern)
-                .Distinct().ToList();
+                .Distinct()
+                .ToList();
 
             var splittedText = Regex.Split(preparedNews, "colorend", RegexOptions.IgnoreCase).ToList();
             var lastWord = splittedText.Last();
@@ -31,16 +32,20 @@ namespace TextAnalizators
             var contentSplittedText = Regex.Split(lastWord, "<[^<]*div>[^<]*");
             var firstContentText = contentSplittedText.First();
 
+            for (var i = 0; i < DelimiterChars.Length; i++)
+            {
+                firstContentText = firstContentText.Replace(DelimiterChars[i].ToString(), "{" + i + "}");
+            }
+
             foreach (var word in list)
             {
-                foreach (var startDelimiterChar in DelimiterChars)
-                {
-                    foreach (var endDelimiterChar in DelimiterChars)
-                    {
-                        var s = startDelimiterChar + word + endDelimiterChar;
-                        firstContentText = firstContentText.Replace(s, string.Format(" {0} <span class=\"underlined-word\"> {1} </span> {2} ", startDelimiterChar, word, endDelimiterChar));
-                    }
-                }
+                var s = "}" + word + "{";
+                firstContentText = firstContentText.Replace(s, string.Format("{0}<span class=\"underlined-word\"> {1} </span>{2}", "}", word, "{"));
+            }
+
+            for (var i = DelimiterChars.Length - 1; i >= 0; i--)
+            {
+                firstContentText = firstContentText.Replace("{" + i + "}", DelimiterChars[i].ToString());
             }
 
             contentSplittedText[0] = firstContentText;
