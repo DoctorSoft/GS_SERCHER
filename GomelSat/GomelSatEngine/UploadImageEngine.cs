@@ -12,7 +12,7 @@ namespace GomelSatEngine
 {
     public class UploadImageEngine : IUploadImageEngine
     {
-        private WebClient client = new WebClient();
+        private readonly WebClient client = new WebClient();
 
         public bool IsElementVisible(IWebElement element)
         {
@@ -58,7 +58,12 @@ namespace GomelSatEngine
                 }
                 catch (Exception)
                 {
-                    client.DownloadFile(image, fileName);
+                    var js = (IJavaScriptExecutor) driver;
+                    js.ExecuteScript("alert('Sorry, something went wrong, please choose another picture')");
+
+                    Thread.Sleep(1000);
+                    driver.Close();
+                    return Run();
                 }
 
                 Thread.Sleep(1000);

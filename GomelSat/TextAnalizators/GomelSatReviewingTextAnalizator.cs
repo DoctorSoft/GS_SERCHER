@@ -21,7 +21,7 @@ namespace TextAnalizators
         {
             var sentences = formattedText
                 .Trim()
-                .Replace("\r\n", "")
+                .Replace("\r\n", " ")
                 .Replace("[/b]", "[/b]\r\n")
                 .Split('.')
                 .ToList();
@@ -30,13 +30,14 @@ namespace TextAnalizators
             var shortText = "";
             foreach (var sentence in sentences)
             {
-                shortText += sentence + ".";
+                shortText += sentence + ". ";
                 if (shortText.Length >= length)
                 {
                     break;
                 }
             }
 
+            shortText = shortText.Trim();
             shortText += "..";
 
             return shortText;
