@@ -46,7 +46,9 @@ namespace Services.GomelSat
 
         private readonly IEnterGomelSatNewsEngine enterGomelSatNewsEngine;
 
-        public GomelSatService(ISiteNewsHeadersParser<GomelSatNewsHeaderModel> gomelSatNewsHeadersParser, ISiteDataProvider gomelSatDataProvider, ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher, ISiteNewsContentParser<GomelSatNewsContentModel> gomelSatNewsContentParser, ITextAnalizator<GomelSatNewsModel> gomelSaTextAnalizator, IWordService wordService, IReviewingTextAnalizator reviewingTextAnalizator, IEnterGomelSatNewsEngine enterGomelSatNewsEngine)
+        private readonly IUploadImageEngine uploadImageEngine;
+
+        public GomelSatService(ISiteNewsHeadersParser<GomelSatNewsHeaderModel> gomelSatNewsHeadersParser, ISiteDataProvider gomelSatDataProvider, ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher, ISiteNewsContentParser<GomelSatNewsContentModel> gomelSatNewsContentParser, ITextAnalizator<GomelSatNewsModel> gomelSaTextAnalizator, IWordService wordService, IReviewingTextAnalizator reviewingTextAnalizator, IEnterGomelSatNewsEngine enterGomelSatNewsEngine, IUploadImageEngine uploadImageEngine)
         {
             this.gomelSatNewsHeadersParser = gomelSatNewsHeadersParser;
             this.gomelSatDataProvider = gomelSatDataProvider;
@@ -57,6 +59,7 @@ namespace Services.GomelSat
             this.wordService = wordService;
             this.reviewingTextAnalizator = reviewingTextAnalizator;
             this.enterGomelSatNewsEngine = enterGomelSatNewsEngine;
+            this.uploadImageEngine = uploadImageEngine;
         }
 
         public IEnumerable<GomelSatNewsModel> GetNews()
@@ -217,6 +220,11 @@ namespace Services.GomelSat
         public void OpenGomelSatRedactor(string header, string shortText, string text)
         {
             enterGomelSatNewsEngine.Run(header, shortText, text);
+        }
+
+        public string GetImageLink()
+        {
+            return uploadImageEngine.Run();
         }
 
         private void SynchonizeNewsWithSite()
