@@ -30,6 +30,10 @@ namespace GomelSatEngine
                 
                 try
                 {
+                    while (!driver.FindElements(By.ClassName("irc_mi")).Any())
+                    {
+                        Thread.Sleep(500);
+                    }
                     while (driver.FindElements(By.ClassName("irc_mi")).First().GetAttribute("src") == null)
                     {
                         Thread.Sleep(500);
