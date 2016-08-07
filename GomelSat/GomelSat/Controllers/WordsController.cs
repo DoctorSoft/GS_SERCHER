@@ -42,5 +42,12 @@ namespace GomelSat.Controllers
             var file = wordService.GetWordsFile();
             return File(file, "text/plain", FileNameConstants.WordsFileName);
         }
+
+        [HttpPost]
+        public ActionResult QuickAddWord(string word, int analizedTextId)
+        {
+            wordService.AddWord(word);
+            return RedirectToAction("AnalizedData", "GomelSatNews", new { id = analizedTextId });
+        }
     }
 }

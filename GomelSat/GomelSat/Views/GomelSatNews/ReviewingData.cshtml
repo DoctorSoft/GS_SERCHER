@@ -100,18 +100,15 @@
                 <div class="modal-body dialog-box-content">
                     <div class="text-center">
                         <h4 class="alert-info alert">
-                            Please, enter <b>image link</b> (formatted or not) here before starting of review. <br/>
-                            You can upload image <b><a href="http://img-host.org.ua/">here</a></b>
+                            Please, click <b>Start uploading image</b>
                         </h4>
                     </div>
 
                     <div class="form-group">
-                        @using (Html.BeginForm("InsertImageLinkToAnalizingText", "GomelSatNews", new {Id = @Model.Id}, FormMethod.Post, new {}))
+                        @using (Html.BeginForm("OpenImageDownloader", "GomelSatNews", new { Id = @Model.Id }, FormMethod.Post, new { }))
                         {
-                            <input type="text" id="imageLink" name="imageLink" class="dialog-input"/>
-
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Enter</button>
+                                <button type="submit" class="btn btn-primary">Start uploading image</button>
                             </div>
                         }
                     </div>

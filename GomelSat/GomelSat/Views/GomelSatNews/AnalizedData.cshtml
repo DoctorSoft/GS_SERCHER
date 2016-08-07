@@ -5,6 +5,38 @@
 
 @model Services.GomelSat.Models.AnalizedDataViewModel
 
+@section scripts
+{
+    <script type="text/javascript">
+        window.onload = function () {
+
+            $(".add-word-window").hide();
+
+            $(".underlined-word").click(function (event) {
+
+                var element = event.toElement;
+                var text = element.innerText.trim();
+
+                var x = event.pageX;
+                var y = event.pageY;
+
+                console.log(event);
+
+                $(".add-word-window").css({ top: y, left: x, position: 'absolute' });
+                
+                $(".add-word-window-word-text").text(text);
+                $(".add-word-window-word-text-value").val(text);
+
+                $(".add-word-window").show();
+            });
+        }
+
+        function modalCancel() {
+            $(".add-word-window").hide();
+        }
+    </script>
+}
+
 @{
     var index = 0;
 }
@@ -34,5 +66,21 @@
         <br/>
 
         @Model.ContentText
+    </div>
+</div>
+
+<div class="add-word-window">
+    <div class="add-word-window-word-full-text">
+        Are you sure you want to add word <span class="add-word-window-word-text"> </span> to ban list?
+    </div>
+    <div>
+        <input type="button" class="btn btn-primary pull-left" onclick="modalCancel()" value="Cancel">
+        @using (Html.BeginForm("QuickAddWord", "Words", new { analizedTextId = @Model.Id }, FormMethod.Post, new { }))
+        {
+            <div>
+                <input type="hidden" name="word" value="" class="add-word-window-word-text-value" />
+                <input type="submit" class="btn btn-primary pull-right" value="Confirm">
+            </div>
+        }
     </div>
 </div>

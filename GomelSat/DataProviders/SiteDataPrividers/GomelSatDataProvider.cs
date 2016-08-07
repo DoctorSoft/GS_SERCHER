@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using DataProviders.Constants;
 
@@ -6,16 +7,23 @@ namespace DataProviders.SiteDataPrividers
 {
     public class GomelSatDataProvider : ISiteDataProvider
     {
+        private readonly HttpClient httpClient = new HttpClient();
+
         public string GetPageData(long page = SiteConstants.StartPage)
         {
-            using (var httpClient = new HttpClient())
+            var httpAddress = string.Format(SiteConstants.GomelSatSitePagePattern, page);
+
+            string response;
+            try
             {
-                var httpAddress = string.Format(SiteConstants.GomelSatSitePagePattern, page);
-
-                var response = httpClient.GetStringAsync(httpAddress).Result;
-
-                return response;
+                response = httpClient.GetStringAsync(httpAddress).Result;
             }
+            catch (Exception)
+            {
+                response = null;
+            }
+
+            return response;
         }
 
         public IEnumerable<string> GetPagesData(long startPage = SiteConstants.StartPage, long endPage = SiteConstants.EndPage)
@@ -28,12 +36,18 @@ namespace DataProviders.SiteDataPrividers
 
         public string GetNewsPageContentByUrl(string url)
         {
-            using (var httpClient = new HttpClient())
-            {
-                var response = httpClient.GetStringAsync(url).Result;
+            string response;
 
-                return response;
+            try
+            {
+                response = httpClient.GetStringAsync(url).Result;
             }
+            catch
+            {
+                response = null;
+            }
+
+            return response;
         }
     }
 }

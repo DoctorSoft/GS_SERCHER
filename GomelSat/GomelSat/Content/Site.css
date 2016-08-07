@@ -257,7 +257,6 @@ textarea {
 
 .gomel-sat-list-links a:link{
 	border-radius: 15px;
-    color: #428bca!important;
     background-color: white!important;
 }
 
@@ -328,4 +327,18 @@ textarea {
 .go-to-review-button {
     min-width: 100%;
     max-width: 100%
+}
+
+.add-word-window {
+    background-color: white;
+    color: #428bca;
+    width: 200px;
+    border-width: 2px;
+    border-color: #428bca;
+    border-style: double;
+    padding: 10px;
+}
+
+.add-word-window-word-full-text {
+    padding-bottom: 5px;
 }
