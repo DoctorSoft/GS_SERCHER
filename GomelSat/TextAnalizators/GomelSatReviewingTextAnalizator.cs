@@ -30,7 +30,7 @@ namespace TextAnalizators
             var shortText = "";
             foreach (var sentence in sentences)
             {
-                shortText += sentence + ". ";
+                shortText += sentence + ".";
                 if (shortText.Length >= length)
                 {
                     break;

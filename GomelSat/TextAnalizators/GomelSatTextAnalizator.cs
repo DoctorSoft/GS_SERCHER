@@ -72,8 +72,8 @@ namespace TextAnalizators
         {
             var preparedText = " " + TagsHandleHelper.RemoveTags(TextHandleHelper.ConvertToPatternForm(model.NewsText)).ToLower() + " ";
 
-            preparedText = preparedText.Replace(" \n", TextHandleHelper.EnterPattern);
-            preparedText = preparedText.Replace(" \r", TextHandleHelper.EnterPattern);
+            preparedText = preparedText.Replace("\n", TextHandleHelper.EnterPattern);
+            preparedText = preparedText.Replace("\r", TextHandleHelper.EnterPattern);
             preparedText = preparedText.Replace(TextHandleHelper.EnterPattern, " ");
             var words = preparedText
                 .Split(DelimiterChars)
